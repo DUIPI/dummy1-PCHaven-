@@ -6,6 +6,7 @@ import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import { Head, Link, useForm } from '@inertiajs/react';
+import SecondaryButton from '@/Components/SecondaryButton';
 
 export default function Login({ status, canResetPassword }) {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -25,16 +26,17 @@ export default function Login({ status, canResetPassword }) {
 
         post(route('login'));
     };
+    
 
     return (
         <GuestLayout>
-            <Head title="Log in" />
+            <Head title="Нэвтрэх" />
 
             {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
 
             <form onSubmit={submit}>
                 <div>
-                    <InputLabel htmlFor="email" value="Email" />
+                    <InputLabel htmlFor="email" value="Имейл" />
 
                     <TextInput
                         id="email"
@@ -51,7 +53,7 @@ export default function Login({ status, canResetPassword }) {
                 </div>
 
                 <div className="mt-4">
-                    <InputLabel htmlFor="password" value="Password" />
+                    <InputLabel htmlFor="password" value="Нууц үг" />
 
                     <TextInput
                         id="password"
@@ -73,24 +75,27 @@ export default function Login({ status, canResetPassword }) {
                             checked={data.remember}
                             onChange={(e) => setData('remember', e.target.checked)}
                         />
-                        <span className="ms-2 text-sm text-gray-600">Remember me</span>
+                        <span className="ms-2 text-sm text-gray-600">Намайг сануул</span>
                     </label>
                 </div>
-
-                <div className="flex items-center justify-end mt-4">
-                    {canResetPassword && (
-                        <Link
-                            href={route('password.request')}
-                            className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                        >
-                            Forgot your password?
-                        </Link>
-                    )}
-
-                    <PrimaryButton className="ms-4" disabled={processing}>
-                        Log in
+                  <div className='mt-4 flex items-center justify-center'>
+                    <PrimaryButton className=" mr-4" disabled={processing}>
+                          Нэвтрэх
                     </PrimaryButton>
-                </div>
+                    <Link href='/register' className=' font-semibold text-[#6F605B]'>
+                      Бүртгүүлэх
+                    </Link>
+                  </div>
+                  <div className="flex items-center justify-center mt-4">
+                      {canResetPassword && (
+                          <Link
+                              href={route('password.request')}
+                              className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                          >
+                              Нууц үг сэргээх
+                          </Link>
+                      )}
+                  </div>
             </form>
         </GuestLayout>
     );
