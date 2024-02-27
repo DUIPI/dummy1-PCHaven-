@@ -1,4 +1,5 @@
 import { Link, Head } from '@inertiajs/react';
+import TopNavMain from '@/Layouts/TopNavLayout';
 
 import { UserCircleIcon } from '@heroicons/react/24/solid'
 
@@ -6,8 +7,7 @@ import { UserCircleIcon } from '@heroicons/react/24/solid'
 export default function Welcome({auth}) {
 	return (
 		<>
-			<Head title="Нүүр" />
-			<div className="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-slate-100  selection:bg-red-500 selection:text-white">
+			{/* <div className="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-slate-100  selection:bg-red-500 selection:text-white">
 				<div className="sm:fixed sm:top-0 sm:right-5 p-6 text-end">
 					{auth.user ? (
 							<Link
@@ -36,7 +36,12 @@ export default function Welcome({auth}) {
 				</div>
 
 				
-			</div>
+			</div> */}
+      <Head title="Нүүр" />
+
+      <TopNavMain>
+
+      </TopNavMain>
 		</>
 	);
 }
