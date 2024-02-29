@@ -23,9 +23,6 @@ export default function TopNavMain({user}) {
             <NavLink href='/pcbuilder'>PC угсрах</NavLink>
           </div>
           <div className=''>
-            {/* <Link href='/dashboard' className=' text-[#6F605B] opacity-70 hover:text-[#F36527]'>
-              <UserCircleIcon className='h-12 w-auto' />
-            </Link> */}
             {user ? (
               <Link href={route('dashboard')}>
                 {user.name}
