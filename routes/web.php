@@ -27,6 +27,22 @@ Route::get('/', function () {
     ]);
 });
 
+Route::get('/product', function (){
+  return Inertia::render('Product');
+});
+
+
+Route::get('/pcbuilder', function (){
+  return Inertia::render('PCbuilder');
+});
+
+//Admin page route
+Route::get('/masterside', function (){
+  return Inertia::render('Adminside');
+});
+
+
+
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
@@ -36,6 +52,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/sell', function (){
+      return Inertia::render('Sell');
+    });    
 });
 
 require __DIR__.'/auth.php';

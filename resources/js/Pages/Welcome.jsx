@@ -9,12 +9,7 @@ import a from '/public/pics/pc1.jpg'
 import b from '/public/pics/pc2.jpg'
 import c from '/public/pics/pc3.jpg'
 
-const slides = [
-  a, 
-  b, 
-  c
-]
-
+const slides = [a, b, c]
 
 
 export default function Welcome({auth}) {

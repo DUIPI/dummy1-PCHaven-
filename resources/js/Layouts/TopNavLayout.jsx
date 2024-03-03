@@ -18,7 +18,7 @@ export default function TopNavMain({user}) {
           </div>
           <div className='items-center'>
             <NavLink href='/product'>Зарууд</NavLink>
-            <PrimaryButton href='/post' className='mx-5 rounded-full'>Зарах</PrimaryButton>
+            <PrimaryButton className='mx-5'><Link href='/sell' >Зарах</Link></PrimaryButton>
             <NavLink href='/pcbuilder'>PC угсрах</NavLink>
           </div>
           <div className=''>
