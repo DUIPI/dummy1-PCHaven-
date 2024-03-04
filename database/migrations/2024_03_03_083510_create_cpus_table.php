@@ -11,8 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('selbegs', function (Blueprint $table) {
-            $table->id();
+        Schema::create('cpus', function (Blueprint $table) {
+            $table->char('cpu_name');
+            $table->char('cpu_socket');
             $table->timestamps();
         });
     }
@@ -22,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('selbegs');
+        Schema::dropIfExists('cpus');
     }
 };
