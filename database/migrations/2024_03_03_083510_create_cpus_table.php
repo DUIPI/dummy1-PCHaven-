@@ -10,13 +10,14 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-    {
-        Schema::create('cpus', function (Blueprint $table) {
-            $table->char('cpu_name');
-            $table->char('cpu_socket');
-            $table->timestamps();
-        });
-    }
+  {
+    Schema::create('cpus', function (Blueprint $table) {
+      $table->id();
+      $table->string('cpu_name');
+      $table->smallInteger('cpu_socket');
+      $table->timestamps();
+    });
+  }
 
     /**
      * Reverse the migrations.

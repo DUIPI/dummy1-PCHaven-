@@ -7,5 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class MoBo extends Model
 {
-    use HasFactory;
+  use HasFactory;
+
+  protected $fillable = [
+    'mobo_name',
+    'mobo_socket'
+  ];
+
 }

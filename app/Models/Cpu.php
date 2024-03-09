@@ -7,10 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cpu extends Model
 {
-    use HasFactory;
+  use HasFactory;
 
-    protected $fillable = [
-      'cpu_name',
-      'cpu_socket',
+  protected $fillable = [
+    'cpu_name',
+    'cpu_socket',
   ];
+
 }
+
+

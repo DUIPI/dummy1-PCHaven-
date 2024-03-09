@@ -11,13 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('memories', function (Blueprint $table) {
+        Schema::create('sockets', function (Blueprint $table) {
             $table->id();
-            $table->string('memory_gen');
-            $table->smallInteger('mem_socket');
-            $table->smallInteger('mem_socket1')->nullable();
-            $table->smallInteger('mem_socket2')->nullable();
-            $table->smallInteger('mem_socket3')->nullable();
+            $table->string('socket_name');
             $table->timestamps();
         });
     }
@@ -27,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('memories');
+        Schema::dropIfExists('sockets');
     }
 };

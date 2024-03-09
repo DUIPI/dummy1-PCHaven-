@@ -12,8 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('mo_bos', function (Blueprint $table) {
-          $table->char('mobo_name');
-          $table->char('mobo_socket');
+          $table->id();
+          $table->string('mobo_name');
+          $table->smallInteger('mobo_socket');
           $table->timestamps();
         });
     }
