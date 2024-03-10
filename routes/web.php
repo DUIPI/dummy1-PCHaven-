@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DulgnController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
@@ -41,6 +42,7 @@ Route::get('/masterside', function (){
   return Inertia::render('Adminside');
 });
 
+Route::post('/create-socket', [AdminController::class, 'createSocket']);
 
 
 
