@@ -2,19 +2,33 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Socket;
-use Illuminate\Validation\Rule;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Inertia\Inertia;
+use Inertia\Response;
 
 class AdminController extends Controller
 {
-    public function createSocket(Request $request){
-      $AdminField = $request->validate([
-        'socket_name' => ['required', Rule::unique('sockets', 'socket_name')]
-      ]);
+  //showing socket data on the Adminside
 
-      Socket::create($AdminField);
+  public function index():Response
+  {
+    return Inertia::render('Adminside', [
+      'sockets' => Socket::with('user:id,name')->latest()->get()
+    ]);
+  }
 
-      return redirect('masterside');
-    }
+  //inserting socket data from the Adminside
+
+  public function store(Request $req): RedirectResponse
+  {
+    $addSocket = $req->validate([
+      'socket_name' => 'required|string|max:64',
+    ]);
+
+    $req->user()->userSockets()->create($addSocket);
+
+    return redirect(route('masterside.index'));
+  }
 }

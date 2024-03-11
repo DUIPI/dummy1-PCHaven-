@@ -5,6 +5,7 @@ use App\Http\Controllers\DulgnController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Posts;
+use App\Models\Socket;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -38,11 +39,9 @@ Route::get('/pcbuilder', function (){
 });
 
 //Admin page route
-Route::get('/masterside', function (){
-  return Inertia::render('Adminside');
-});
-
-Route::post('/create-socket', [AdminController::class, 'createSocket']);
+Route::resource('masterside', AdminController::class)
+  ->only(['index', 'store', 'update'])
+  ->middleware('auth');
 
 
 
@@ -62,27 +61,4 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 
-
-// // ---------Testing here
-
-// Route::get('/home', function() {
-
-//     $posts = [];
-
-//     if(auth()->check()){
-//         $posts = auth()->user()->userPosts()->latest()->get();
-//     }
-
-//     return view('homePage', ['posts'=>$posts]);
-// });
-// // User routes
-// Route::post('/register', [DulgnController::class, 'register']);
-// Route::post('/login', [DulgnController::class, 'login']);
-// Route::post('/logout', [DulgnController::class, 'logout']);
-
-// //Posts routes
-// Route::post('/create-post', [PostController::class, 'createPost']);
-// Route::get('/edit-post/{post}', [PostController::class, 'showEditScreen']);
-// Route::put('/edit-post/{post}', [PostController::class, 'updatePost']);
-// Route::delete('/delete-post/{post}', [PostController::class, 'deletePost']);
 
