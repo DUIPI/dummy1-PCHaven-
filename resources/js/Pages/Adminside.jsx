@@ -4,46 +4,45 @@ import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import InputError from '@/Components/InputError';
 import ShowSocket from '@/Components/ShowSocket';
+import SocketBurtgel from '@/Components/SocketBurtgel';
 
 export default function Adminside({ sockets }) {
 
-  const {data, setData, post, processing, reset, errors} = useForm({
-    socket_name: ''
-  })
+  
 
-  const submit = (e) => {
-    e.preventDefault();
+  // const {data: dataC, 
+  //   setData: setDataC, 
+  //   post: postC, 
+  //   processing: processingC, 
+  //   reset: resetC, 
+  //   errors: errorsC} = useForm({
+  //     cpu_name: '',
+  //     cpu_socket: ''
+  // })
 
-    post(route('masterside.store'), {onSuccess: () => reset()});
-  }
+  
+
+  // const submitCPU = (e) => {
+  //   e.preventDefault();
+
+  //   postC(route('masterside.store'), {onSuccess: () => resetC()});
+  // }
 
   return (
     <>
       <Head title="Эд анги бүртгэл" />
+      <div className='flex'>
+        <SocketBurtgel />
 
-      <div className="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
-        <form onSubmit={submit}>
-            <InputLabel htmlFor="socket_name" value="Сокет нэр" />
+        <h1><b>Sockets</b></h1>
+      <div>
+        {sockets.map(socket => 
+            <ShowSocket key={socket.id} socket={socket} />
+          )}
+      </div>
 
-          <TextInput
-              value={data.socket_name}
-              placeholder="Сокетны нэрийг оруулах"
-              className="mt-1 block w-2/4"
-              onChange={(e) => setData('socket_name', e.target.value)}
-              required
-          />
-          <InputError message={errors.socket_name} className='mt-2' />
-          <PrimaryButton className="ms-4 mt-4" disabled={processing}>
-            Бүртгэх
-          </PrimaryButton>
-        </form>
-
-        <h1>Sockets</h1>
-        <div>
-          {sockets.map(socket => 
-              <ShowSocket key={socket.id} socket={socket} />
-            )}
-        </div>
+        {/* CPU burtgel */}
+        
       </div>
     </>
   )

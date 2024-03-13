@@ -13,6 +13,7 @@ return new class extends Migration
   {
     Schema::create('cpus', function (Blueprint $table) {
       $table->id();
+      $table->foreignId('user_id')->constrained()->cascadeOnDelete();
       $table->string('cpu_name');
       $table->smallInteger('cpu_socket');
       $table->timestamps();

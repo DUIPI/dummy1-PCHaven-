@@ -15,8 +15,10 @@ class AdminController extends Controller
   public function index():Response
   {
     return Inertia::render('Adminside', [
-      'sockets' => Socket::with('user:id,name')->latest()->get()
+      'sockets' => Socket::with('user:id,name')->latest()->get(),
+      'cpus' => Socket::with('user:id,name')->latest()->get(),
     ]);
+
   }
 
   //inserting socket data from the Adminside
@@ -24,11 +26,20 @@ class AdminController extends Controller
   public function store(Request $req): RedirectResponse
   {
     $addSocket = $req->validate([
-      'socket_name' => 'required|string|max:64',
+      'socket_name' => 'required|string|max:64|unique:sockets,socket_name',
     ]);
-
     $req->user()->userSockets()->create($addSocket);
 
     return redirect(route('masterside.index'));
+
+
+    $addCPU = $req->validate([
+      'cpu_name' => 'required|string|max:64|unique:cpus,cpu_name',
+      'cpu_socket' => 'required',
+    ]);
+    $req->user()->userCPU()->create($addCPU);
+
+    return redirect(route('masterside.index'));
   }
+  
 }
