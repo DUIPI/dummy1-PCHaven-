@@ -5,28 +5,10 @@ import TextInput from '@/Components/TextInput';
 import InputError from '@/Components/InputError';
 import ShowSocket from '@/Components/ShowSocket';
 import SocketBurtgel from '@/Components/SocketBurtgel';
+import CpuBurtgel from '@/Components/CpuBurtgel';
 
 export default function Adminside({ sockets }) {
 
-  
-
-  // const {data: dataC, 
-  //   setData: setDataC, 
-  //   post: postC, 
-  //   processing: processingC, 
-  //   reset: resetC, 
-  //   errors: errorsC} = useForm({
-  //     cpu_name: '',
-  //     cpu_socket: ''
-  // })
-
-  
-
-  // const submitCPU = (e) => {
-  //   e.preventDefault();
-
-  //   postC(route('masterside.store'), {onSuccess: () => resetC()});
-  // }
 
   return (
     <>
@@ -42,7 +24,7 @@ export default function Adminside({ sockets }) {
       </div>
 
         {/* CPU burtgel */}
-        
+        <CpuBurtgel />
       </div>
     </>
   )
