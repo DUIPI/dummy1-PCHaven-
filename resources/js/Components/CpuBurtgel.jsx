@@ -15,7 +15,7 @@ export default function CpuBurtgel() {
         const submit = (e) => {
         e.preventDefault();
 
-        post(route('masterside.cpu'), {onSuccess: () => reset()});
+        post(route('masterside/cpu'), {onSuccess: () => reset()});
         }
         
   return (

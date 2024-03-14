@@ -15,7 +15,7 @@ export default function SocketBurtgel() {
   const submit = (e) => {
     e.preventDefault();
 
-    post(route('masterside.store'), {onSuccess: () => reset()});
+    post(route('masterside/socket'), {onSuccess: () => reset()});
   }
   return (
     <>
