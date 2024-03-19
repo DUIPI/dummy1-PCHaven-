@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SellController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -30,8 +32,17 @@ Route::get('/', function () {
     'canRegister' => Route::has('register')
   ]);
 });
+//Sell pages routes
+Route::middleware('auth')->group(function () {
+  Route::get('sell',[SellController::class, 'index'])->name('sell.index');
+  Route::resource('sell', SellController::class);
+});
 
-Route::get('products/cpu', function () {return Inertia::render('Products/Cpu');})->name('products/cpu');
+//Products pages routes
+Route::post('sell/cpu', [ProductsController::class, 'sellCpu'])->name('sell/cpu');
+Route::get('products/cpu',[ProductsController::class, 'productsCpu'])->name('products/cpu');
+Route::resource('products', ProductsController::class);
+
 Route::get('products/cpu-cooler', function () {return Inertia::render('Products/CpuCooler');})->name('products/cooler');
 Route::get('products/motherboard', function () {return Inertia::render('Products/Motherboard');})->name('products/mobo');
 Route::get('products/memory', function () {return Inertia::render('Products/Memory');})->name('products/memory');
@@ -59,9 +70,6 @@ Route::middleware('auth')->group(function () {
   Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
   Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
   Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-  Route::get('/sell', function () {
-    return Inertia::render('Sell');
-  });
 });
 
 require __DIR__ . '/auth.php';

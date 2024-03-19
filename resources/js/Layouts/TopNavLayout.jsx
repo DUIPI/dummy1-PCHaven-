@@ -41,8 +41,11 @@ export default function TopNavMain({user, header, children}) {
                 <Dropdown.Link href={route('products/case')}>Кейс</Dropdown.Link>
               </Dropdown.Content>
             </Dropdown>
-
-            <PrimaryButton className='mx-5'><Link href='/sell' >Зарах</Link></PrimaryButton>
+            <Link href={route('sell.index')}>
+              <PrimaryButton className='mx-5'>
+                Зарах
+              </PrimaryButton>
+            </Link>
             <NavLink href='/pcbuilder'>PC угсрах</NavLink>
           </div>
           <div>

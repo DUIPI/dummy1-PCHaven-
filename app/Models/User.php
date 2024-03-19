@@ -54,4 +54,10 @@ class User extends Authenticatable
   {
     return $this->hasMany(Cpu::class);
   }
+
+  //Products relationships
+  public function userpCPU():HasMany 
+  {
+    return $this->hasMany(ProductCpu::class);
+  }
 }
