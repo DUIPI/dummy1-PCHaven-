@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
+use App\Models\ProductCpu;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -13,27 +12,11 @@ class ProductsController extends Controller
 
     public function productsCpu(): Response
     {
-      return Inertia::render('Products/Cpu');
+      return Inertia::render('Products/Cpu',[
+        'user'=>auth()->user(),
+        'p_cpus' => ProductCpu::with('user:id,name')->latest()->get(),
+      ]);
     }
 
-    //storing CPU product info
-
-    public function sellCpu(Request $req): RedirectResponse
-  {
-    $sellcpu = $req->validate([
-      'cpu_image'=>'nullable',
-      'p_cpu_name' => 'required',
-      'core_count' => 'required|numeric',
-      'core_clock' => 'required|numeric',
-      'boost_clock'=> 'nullable|numeric',
-      'tdp'=> 'nullable|numeric',
-      'int_graphics'=> 'nullable',
-      'p_cpu_price'=> 'required|numeric',
-      'cpu_tailbar'=> 'nullable'
-    ]);
-
-    $req->user()->userpCpu()->create($sellcpu);
-
-    return redirect(route('products/cpu'));
-  }
+    
 }

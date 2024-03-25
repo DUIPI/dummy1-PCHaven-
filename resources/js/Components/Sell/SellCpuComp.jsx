@@ -8,7 +8,7 @@ import InputError from '@/Components/InputError';
 
 export default function SellCpuComp() {
   const {data, setData, post, processing, reset, errors} = useForm({
-    cpu_image: null,
+    cpu_image: '',
     p_cpu_name: '',
     core_count: '',
     core_clock: '',
@@ -22,7 +22,7 @@ export default function SellCpuComp() {
     const submit = (e) => {
     e.preventDefault();
 
-    post(route('sell/cpu'), {onSuccess: () => reset()});
+    post(route('store.cpu'), {onSuccess: () => reset()});
     }
     
   return (
@@ -42,40 +42,40 @@ export default function SellCpuComp() {
       <InputError message={errors.cpu_image} className=' mb-2' />
 
 {/* Ner */}
-        <InputLabel htmlFor="p_cpu_name" value="CPU нэр" />
+        <InputLabel htmlFor="p_cpu_name" value="Нэр" />
       <TextInput
           value={data.p_cpu_name}
-          placeholder="CPU нэрийг оруулах"
+          placeholder="CPU нэр*"
           className="mt-1 block w-full"
           onChange={(e) => setData('p_cpu_name', e.target.value)}
       />
       <InputError message={errors.p_cpu_name} className=' mb-2' />
 {/* Cores */}
-      <InputLabel htmlFor="core_count" value="CPU цөмийн тоо" />
+      <InputLabel htmlFor="core_count" value="Цөмийн тоо" />
       <TextInput
           type='number'
           value={data.core_count}
-          placeholder="CPU-ний цөмийн тоог оруулах"
+          placeholder="CPU-ний цөмийн тоо*"
           className="mt-1 block w-full"
           onChange={(e) => setData('core_count', e.target.value)}
       />
       <InputError message={errors.core_count} className=' mb-2' />
 {/* Core speed */}
-      <InputLabel htmlFor="core_clock" value="CPU цөмийн хурд" />
+      <InputLabel htmlFor="core_clock" value="Цөмийн хурд" />
       <TextInput
           type='number'
           value={data.core_clock}
-          placeholder="CPU-ний цөмийн хурдыг оруулах"
+          placeholder="CPU-ний цөмийн энгийн хурд*"
           className="mt-1 block w-full"
           onChange={(e) => setData('core_clock', e.target.value)}
       />
       <InputError message={errors.core_clock} className=' mb-2' />
 {/* Boost clock */}
-      <InputLabel htmlFor="boost_clock" value="CPU цөмийн дээд хурд" />
+      <InputLabel htmlFor="boost_clock" value="Цөмийн дээд хурд" />
       <TextInput
           type='number'
           value={data.boost_clock}
-          placeholder="CPU-ний цөмийн дээд хурдыг оруулах"
+          placeholder="CPU-ний цөмийн дээд хурд"
           className="mt-1 block w-full"
           onChange={(e) => setData('boost_clock', e.target.value)}
           
@@ -86,25 +86,26 @@ export default function SellCpuComp() {
       <TextInput
           type='number'
           value={data.tdp}
+          placeholder="CPU-ний тог зарцуулалтын хэмжээ"
           className="mt-1 block w-full"
           onChange={(e) => setData('tdp', e.target.value)}
       />
       <InputError message={errors.tdp} className=' mb-2' />
 {/* Graphic */}
-      <InputLabel htmlFor="int_graphics" value="CPU кард" />
+      <InputLabel htmlFor="int_graphics" value="Кард" />
       <TextInput
           value={data.int_graphics}
-          placeholder="CPU-ний график кардны нэрийг бичнэ үү."
+          placeholder="CPU тань өөр дээрээ кардтай бол нэрийг нь бичнэ үү."
           className="mt-1 block w-full"
           onChange={(e) => setData('int_graphics', e.target.value)}
       />
       <InputError message={errors.int_graphics} className=' mb-2' />
 {/* Tailbar */}
-      <InputLabel htmlFor="cpu_tailbar" value="Дэлгэрэнгүй" />
-      <TextInput
+      <InputLabel htmlFor="cpu_tailbar" value="Тайлбар" />
+      <textarea
           value={data.cpu_tailbar}
-          placeholder="CPU-нийхээ талаарх дэлгэрэнгүй мэдээллийг оруулна уу."
-          className="mt-1 block w-full"
+          placeholder="CPU-ний талаарх нэмэлт тайлбар"
+          className="mt-1 mb-5 block w-full"
           onChange={(e) => setData('cpu_tailbar', e.target.value)}
       />
       <InputError message={errors.cpu_tailbar} className=' mb-2' />
@@ -112,6 +113,7 @@ export default function SellCpuComp() {
       <InputLabel htmlFor="p_cpu_price" value="Үнэ" />
       <TextInput
           type='number'
+          placeholder="Үнийн мэдээллийг зөвхөн тоогоор оруулна уу*"
           value={data.p_cpu_price}
           className="mt-1 block w-full"
           onChange={(e) => setData('p_cpu_price', e.target.value)}

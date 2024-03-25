@@ -18,10 +18,10 @@ return new class extends Migration
             $table->tinyInteger('core_count');
             $table->float('core_clock');
             $table->float('boost_clock')->nullable();
-            $table->tinyInteger('tdp')->nullable();
+            $table->smallInteger('tdp')->nullable();
             $table->string('int_graphics')->nullable()->strip_tags();
             $table->integer('p_cpu_price');
-            $table->string('cpu_tailbar')->nullable()->strip_tags();
+            $table->text('cpu_tailbar')->nullable()->strip_tags();
             $table->timestamps();
         });
     }

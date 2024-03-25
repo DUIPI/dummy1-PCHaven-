@@ -3,8 +3,9 @@ import ShowSocket from '@/Components/ShowSocket';
 import SocketBurtgel from '@/Components/SocketBurtgel';
 import CpuBurtgel from '@/Components/CpuBurtgel';
 import ShowCpu from '@/Components/ShowCpu'
+import ShowProductsCpu from '@/Components/ShowProducts/ShowProductsCpu';
 
-export default function Adminside({ sockets, cpus }) {
+export default function Adminside({ sockets, cpus, product_cpus }) {
 
 
   return (
@@ -27,6 +28,11 @@ export default function Adminside({ sockets, cpus }) {
         <div>
           {cpus.map(cpu =>
           <ShowCpu key={cpu.id} cpu={cpu} />
+            )}
+        </div>
+        <div>
+          {product_cpus.map(p_cpu =>
+          <ShowProductsCpu key={p_cpu.id} p_cpu={p_cpu} />
             )}
         </div>
       </div>

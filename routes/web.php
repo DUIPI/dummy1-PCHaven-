@@ -32,16 +32,23 @@ Route::get('/', function () {
     'canRegister' => Route::has('register')
   ]);
 });
+
 //Sell pages routes
 Route::middleware('auth')->group(function () {
-  Route::get('sell',[SellController::class, 'index'])->name('sell.index');
-  Route::resource('sell', SellController::class);
+  Route::controller(SellController::class)->group(function (){
+    Route::get('sell/cpu', 'showSellCpu')->name('sell.cpu');
+    Route::post('store/cpu', 'sellCpu')->name('store.cpu');
+    Route::resource('sell', SellController::class);
+  });
 });
 
 //Products pages routes
-Route::post('sell/cpu', [ProductsController::class, 'sellCpu'])->name('sell/cpu');
-Route::get('products/cpu',[ProductsController::class, 'productsCpu'])->name('products/cpu');
-Route::resource('products', ProductsController::class);
+Route::controller(ProductsController::class)->group(function(){
+  Route::get('products/cpu',[ProductsController::class, 'productsCpu'])->name('products.cpu');
+  Route::resource('products', ProductsController::class);
+
+});
+
 
 Route::get('products/cpu-cooler', function () {return Inertia::render('Products/CpuCooler');})->name('products/cooler');
 Route::get('products/motherboard', function () {return Inertia::render('Products/Motherboard');})->name('products/mobo');

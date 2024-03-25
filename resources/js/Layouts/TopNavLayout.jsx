@@ -31,7 +31,7 @@ export default function TopNavMain({user, header, children}) {
               </Dropdown.Trigger>
 
               <Dropdown.Content>
-                <Dropdown.Link href={route('products/cpu')}>Процессор</Dropdown.Link>
+                <Dropdown.Link href={route('products.cpu')}>Процессор</Dropdown.Link>
                 <Dropdown.Link href={route('products/cooler')}>Хөргүүр</Dropdown.Link>
                 <Dropdown.Link href={route('products/mobo')}>Эх хавтан</Dropdown.Link>
                 <Dropdown.Link href={route('products/memory')}>Санах ой</Dropdown.Link>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cpu;
+use App\Models\ProductCpu;
 use App\Models\Socket;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -18,6 +19,8 @@ class AdminController extends Controller
     return Inertia::render('Adminside', [
       'sockets' => Socket::with('user:id,name')->latest()->get(),
       'cpus' => Cpu::with('user:id,name')->latest()->get(),
+      'product_cpus' => ProductCpu::with('user:id,name')->latest()->get(),
+
     ]);
   }
 
