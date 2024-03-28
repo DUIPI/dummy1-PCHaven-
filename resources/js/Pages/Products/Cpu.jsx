@@ -24,7 +24,7 @@ export default function Cpu({auth, p_cpus}) {
           <div className='w-1/6 p-2 m-2'>Үнэ</div>
         </div>
           {p_cpus.map(p_cpu => 
-            <ShowProductsCpu key={p_cpu.id} p_cpu={p_cpu} img={p_cpu.cpu_image}/>
+            <ShowProductsCpu key={p_cpu.id} p_cpu={p_cpu}/>
             )}
         </div>
       </div>

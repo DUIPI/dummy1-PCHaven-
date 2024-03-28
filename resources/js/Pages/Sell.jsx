@@ -13,7 +13,9 @@ export default function Sell(auth) {
           <Head title='Зар оруулах' />
 
         <div className='w-1/2 m-auto font-semibold'>
-          <Link href={route('sell.cpu')}>Процессор</Link>
+          <div><Link href={route('sell.cpu')}>Процессор</Link></div>
+          <div><Link href={route('sell.cooler')}>Хөргүүр</Link></div>
+
         </div>
 
 

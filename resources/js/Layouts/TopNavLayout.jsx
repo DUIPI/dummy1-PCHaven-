@@ -32,13 +32,13 @@ export default function TopNavMain({user, header, children}) {
 
               <Dropdown.Content>
                 <Dropdown.Link href={route('products.cpu')}>Процессор</Dropdown.Link>
-                <Dropdown.Link href={route('products/cooler')}>Хөргүүр</Dropdown.Link>
-                <Dropdown.Link href={route('products/mobo')}>Эх хавтан</Dropdown.Link>
-                <Dropdown.Link href={route('products/memory')}>Санах ой</Dropdown.Link>
-                <Dropdown.Link href={route('products/disk')}>Диск</Dropdown.Link>
-                <Dropdown.Link href={route('products/gpu')}>График кард</Dropdown.Link>
-                <Dropdown.Link href={route('products/psu')}>Тэжээлийн блок</Dropdown.Link>
-                <Dropdown.Link href={route('products/case')}>Кейс</Dropdown.Link>
+                <Dropdown.Link href={route('products.cooler')}>Хөргүүр</Dropdown.Link>
+                <Dropdown.Link href={route('products.mobo')}>Эх хавтан</Dropdown.Link>
+                <Dropdown.Link href={route('products.memory')}>Санах ой</Dropdown.Link>
+                <Dropdown.Link href={route('products.storage')}>Диск</Dropdown.Link>
+                <Dropdown.Link href={route('products.gpu')}>График кард</Dropdown.Link>
+                <Dropdown.Link href={route('products.psu')}>Тэжээлийн блок</Dropdown.Link>
+                <Dropdown.Link href={route('products.case')}>Кейс</Dropdown.Link>
               </Dropdown.Content>
             </Dropdown>
             <Link href={route('sell.index')}>

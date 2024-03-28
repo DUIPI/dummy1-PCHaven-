@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('product_coolers', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->string('cooler_name')->strip_tags();
+            $table->smallInteger('fan_rpm')->nullable();
+            $table->float('noice_lvl')->nullable();
+            $table->string('cooler_color')->strip_tags();
+            $table->smallInteger('cooler_size')->nullable();
+            $table->integer('cooler_price');
             $table->timestamps();
         });
     }
