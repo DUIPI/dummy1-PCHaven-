@@ -13,6 +13,14 @@ return new class extends Migration
     {
         Schema::create('product_mobos', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->string('name');
+            $table->string('socket');
+            $table->string('hemjee');
+            $table->smallInteger('memory_max');
+            $table->smallInteger('memory_slot');
+            $table->string('color');
+            $table->integer('price');
             $table->timestamps();
         });
     }

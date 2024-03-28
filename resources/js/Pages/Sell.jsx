@@ -15,6 +15,8 @@ export default function Sell(auth) {
         <div className='w-1/2 m-auto font-semibold'>
           <div><Link href={route('sell.cpu')}>Процессор</Link></div>
           <div><Link href={route('sell.cooler')}>Хөргүүр</Link></div>
+          <div><Link href={route('sell.mobo')}>Эх хавтан</Link></div>
+
 
         </div>
 

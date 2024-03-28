@@ -25,7 +25,7 @@ export default function TopNavMain({user, header, children}) {
                   type="button"
                     className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
                 >
-                  Зарууд
+                  Бүтээгдэхүүн
                 </button>
               </span>
               </Dropdown.Trigger>

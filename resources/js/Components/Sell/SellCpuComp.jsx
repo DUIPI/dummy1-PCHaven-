@@ -30,7 +30,7 @@ export default function SellCpuComp() {
     <form onSubmit={submit} encType='multipart/form-data'>
 
 {/* Zurag */}
-<InputLabel htmlFor="cpu_image" value="Зураг" />
+  <InputLabel htmlFor="cpu_image" value="Зураг" />
       <TextInput
           name="cpu_image"
           type="file"

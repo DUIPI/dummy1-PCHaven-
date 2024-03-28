@@ -1,7 +1,7 @@
 import React from 'react'
 import TopNavMain from '@/Layouts/TopNavLayout';
 import { Head } from '@inertiajs/react';
-import ShowProductCooler from '@/Components/ShowProducts/ShowProductCooler';
+import Cooler from '@/Components/ShowProducts/ShowProductCooler';
 
 
 export default function CpuCooler({auth, coolers}) {
@@ -23,8 +23,8 @@ export default function CpuCooler({auth, coolers}) {
             <div className=' w-1/12 p-2 m-2'>Сэнсний диаметр </div>
             <div className='w-1/6 p-2 m-2'>Үнэ</div>
           </div>
-          {coolers.map(clr=>
-            <ShowProductCooler key={clr.id} clr={clr} />
+          {coolers.map(cooler=>
+            <Cooler key={cooler.id} cooler={cooler}/>
           )}
         </div>
       </div>

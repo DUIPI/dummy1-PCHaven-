@@ -13,5 +13,4 @@ class MoBo extends Model
     'mobo_name',
     'mobo_socket'
   ];
-
 }
