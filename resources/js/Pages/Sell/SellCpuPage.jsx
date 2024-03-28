@@ -1,4 +1,5 @@
 import SellCpuComp from '@/Components/Sell/SellCpuComp'
+import Footer from '@/Layouts/Footer'
 import TopNavMain from '@/Layouts/TopNavLayout'
 import React from 'react'
 
@@ -13,7 +14,7 @@ export default function Sell(auth) {
         <SellCpuComp />
         </div>
 
-
+      <Footer />
       </div>
     </>
   )
