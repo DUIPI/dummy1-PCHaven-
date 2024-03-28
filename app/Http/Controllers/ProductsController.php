@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ProductCooler;
 use App\Models\ProductCpu;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -18,5 +19,14 @@ class ProductsController extends Controller
       ]);
     }
 
+    //showing Products/Cooler page
+
+    public function productsCooler(): Response
+    {
+      return Inertia::render('Products/CpuCooler',[
+        'user'=>auth()->user(),
+        'coolers'=>ProductCooler::with('user:id,name')->latest()->get()
+      ]);
+    }
     
 }

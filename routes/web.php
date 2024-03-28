@@ -38,25 +38,27 @@ Route::middleware('auth')->group(function () {
   Route::controller(SellController::class)->group(function (){
     Route::get('sell/cpu', 'showSellCpu')->name('sell.cpu');
     Route::post('store/cpu', 'sellCpu')->name('store.cpu');
+
+    Route::get('sell/cpu-cooler', 'showSellCooler')->name('sell.cooler');
+    Route::post('store/cooler', 'sellCooler')->name('store.cooler');
+
     Route::resource('sell', SellController::class);
   });
 });
 
 //Products pages routes
 Route::controller(ProductsController::class)->group(function(){
-  Route::get('products/cpu',[ProductsController::class, 'productsCpu'])->name('products.cpu');
+  Route::get('products/cpu', 'productsCpu')->name('products.cpu');
+  Route::get('products/cpu-cooler', 'productsCooler')->name('products.cooler');
+  Route::get('products/motherboard', 'productsMobo')->name('products.mobo');
+  Route::get('products/memory', 'productsMemory')->name('products.memory');
+  Route::get('products/storage', 'productsStorage')->name('products.storage');
+  Route::get('products/graphics-card', 'productsGpu')->name('products.gpu');
+  Route::get('products/power-supply', 'productsPsu')->name('products.psu');
+  Route::get('products/case', 'productsCase')->name('products.case');
+
   Route::resource('products', ProductsController::class);
-
 });
-
-
-Route::get('products/cpu-cooler', function () {return Inertia::render('Products/CpuCooler');})->name('products/cooler');
-Route::get('products/motherboard', function () {return Inertia::render('Products/Motherboard');})->name('products/mobo');
-Route::get('products/memory', function () {return Inertia::render('Products/Memory');})->name('products/memory');
-Route::get('products/storage', function () {return Inertia::render('Products/Storage');})->name('products/disk');
-Route::get('products/graphics-card', function () {return Inertia::render('Products/Gpu');})->name('products/gpu');
-Route::get('products/power-supply', function () {return Inertia::render('Products/Psu');})->name('products/psu');
-Route::get('products/case', function () {return Inertia::render('Products/Case');})->name('products/case');
 
 
 

@@ -17,6 +17,7 @@ class SellController extends Controller
       ]);
     }
 
+      //CPU
     public function showSellCpu(): Response
     {
       return Inertia::render('Sell/SellCpuPage', [
@@ -41,5 +42,29 @@ class SellController extends Controller
     $req->user()->userpCpu()->create($sellcpu);
 
     return redirect(route('products.cpu'));
+  }
+
+    //Cooler
+    public function showSellCooler(): Response
+    {
+      return Inertia::render('Sell/SellCoolerPage', [
+        'user' => auth()->user()
+      ]);
+    }
+
+    public function sellCooler(Request $req): RedirectResponse
+  {
+    $sellCooler = $req->validate([
+      'cooler_name'=>'required',
+      'fan_rpm'=>'nullable|numeric',
+      'noice_lvl'=>'nullable|numeric',
+      'cooler_color'=>'required',
+      'cooler_size'=>'nullable|numeric',
+      'cooler_price'=>'required'
+    ]);
+
+    $req->user()->userpCooler()->create($sellCooler);
+
+    return redirect(route('products.cooler'));
   }
 }

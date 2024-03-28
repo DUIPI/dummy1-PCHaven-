@@ -60,4 +60,9 @@ class User extends Authenticatable
   {
     return $this->hasMany(ProductCpu::class);
   }
+
+  public function userpCooler():HasMany 
+  {
+    return $this->hasMany(ProductCooler::class);
+  }
 }
