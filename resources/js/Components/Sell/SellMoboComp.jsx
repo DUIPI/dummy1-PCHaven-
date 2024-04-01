@@ -5,7 +5,7 @@ import { useForm } from '@inertiajs/react';
 import InputLabel from '../InputLabel';
 import TextInput from '../TextInput';
 
-export default function SellMoboComp({auth}) {
+export default function SellMoboComp() {
 
     const { data, setData, post, processing, reset, errors } = useForm({
         name: '',

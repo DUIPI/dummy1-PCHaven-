@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
+use Illuminate\Support\Str;
 
 class SellController extends Controller
 {
@@ -71,20 +72,27 @@ class SellController extends Controller
     ]);
   }
 
-  public function sellCooler(Request $req): RedirectResponse
+  public function sellCooler(Request $req)
   {
     $sellCooler = $req->validate([
-      'cooler_name' => 'required',
+      'name' => 'required',
       'fan_rpm' => 'nullable|numeric',
       'noice_lvl' => 'nullable|numeric',
-      'cooler_color' => 'required',
-      'cooler_size' => 'nullable|numeric',
-      'cooler_price' => 'required'
+      'color' => 'required',
+      'size' => 'nullable|numeric',
+      'price' => 'required',
+      'image' => 'nullable|image'
     ]);
+    /** @var $image \Illuminate\Http\UploadedFile */
+
+    $image = $sellCooler['image'] ?? null;
+    if ($image) {
+      $sellCooler['image'] = $image->store('cooler/' . Str::random(), 'public');
+    }
 
     $req->user()->userpCooler()->create($sellCooler);
 
-    return redirect(route('products.cooler'));
+    return to_route('products.cooler');
   }
 
   //Motherboard

@@ -11,12 +11,13 @@ class ProductCooler extends Model
     use HasFactory;
     
     protected $fillable=[
-      'cooler_name',
+      'name',
       'fan_rpm',
       'noice_lvl',
-      'cooler_color',
-      'cooler_size',
-      'cooler_price'
+      'color',
+      'size',
+      'price',
+      'image'
     ];
 
     public function user(): BelongsTo

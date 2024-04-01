@@ -45,6 +45,9 @@ Route::middleware('auth')->group(function () {
     Route::get('sell/motherboard', 'showSellMobo')->name('sell.mobo');
     Route::post('store/mobo', 'sellMobo')->name('store.mobo');
 
+    Route::get('sell/storage', 'showSellDisk')->name('sell.disk');
+    Route::post('store/disk', 'sellDisk')->name('store.disk');
+
     Route::resource('sell', SellController::class);
   });
 });
