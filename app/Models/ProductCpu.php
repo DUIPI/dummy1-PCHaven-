@@ -11,7 +11,6 @@ class ProductCpu extends Model
     use HasFactory;
 
     protected $fillable = [
-      'cpu_image',
       'p_cpu_name',
       'core_count',
       'core_clock',
@@ -19,7 +18,8 @@ class ProductCpu extends Model
       'tdp',
       'int_graphics',
       'p_cpu_price',
-      'cpu_tailbar'
+      'cpu_tailbar',
+      'image'
     ];
   
     public function user(): BelongsTo

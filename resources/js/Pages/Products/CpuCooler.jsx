@@ -29,7 +29,7 @@ export default function CpuCooler({ auth, coolers }) {
               className="object-cover w-full rounded-t-lg h-96 md:h-full md:w-64 md:rounded-none md:rounded-s-lg"
             />
             <span className="flex flex-col justify-between p-4 leading-normal">
-              <div className="mb-3 text-2xl font-bold tracking-tight text-gray-900">
+              <div className="mb-3 text-2xl font-bold tracking-tight text-bronze">
                 {cooler.name}
               </div>
               <div className="mb-1 font-normal text-gray-700">

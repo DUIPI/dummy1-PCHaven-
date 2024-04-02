@@ -71,4 +71,29 @@ class User extends Authenticatable
   {
     return $this->hasMany(ProductMobo::class);
   }
+
+  public function userpDisk(): HasMany
+  {
+    return $this->hasMany(ProductDisk::class);
+  }
+
+  public function userpGpu(): HasMany
+  {
+    return $this->hasMany(ProductGpu::class);
+  }
+
+  public function userpRam(): HasMany
+  {
+    return $this->hasMany(ProductRam::class);
+  }
+
+  public function userpPsu(): HasMany
+  {
+    return $this->hasMany(ProductPsu::class);
+  }
+
+  public function userpCase(): HasMany
+  {
+    return $this->hasMany(ProductCase::class);
+  }
 }

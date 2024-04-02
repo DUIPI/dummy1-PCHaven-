@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('int_graphics')->nullable()->strip_tags();
             $table->integer('p_cpu_price');
             $table->text('cpu_tailbar')->nullable()->strip_tags();
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

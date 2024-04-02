@@ -48,6 +48,15 @@ Route::middleware('auth')->group(function () {
     Route::get('sell/storage', 'showSellDisk')->name('sell.disk');
     Route::post('store/disk', 'sellDisk')->name('store.disk');
 
+    Route::get('sell/gpu', 'showSellGpu')->name('sell.gpu');
+    Route::post('store/gpu', 'sellGpu')->name('store.gpu');
+
+    Route::get('sell/psu', 'showSellPsu')->name('sell.psu');
+    Route::post('store/psu', 'sellPsu')->name('store.psu');
+    
+    Route::get('sell/case', 'showSellCase')->name('sell.case');
+    Route::post('store/case', 'sellCase')->name('store.case');
+
     Route::resource('sell', SellController::class);
   });
 });

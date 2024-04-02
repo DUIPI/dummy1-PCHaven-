@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ProductCpu;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -29,17 +28,6 @@ class SellController extends Controller
 
   public function sellCpu(Request $req): RedirectResponse
   {
-    // $sellCpu = new ProductCpu();
-    // $sellCpu->cpu_image = $req->input('cpu_image');
-    // $sellCpu->p_cpu_name = $req->input('p_cpu_name');
-    // $sellCpu->core_count = $req->input('core_count');
-    // $sellCpu->core_clock = $req->input('core_clock');
-    // $sellCpu->boost_clock = $req->input('boost_clock');
-    // $sellCpu->tdp = $req->input('tdp');
-    // $sellCpu->int_graphics = $req->input('int_graphics');
-    // $sellCpu->p_cpu_price = $req->input('p_cpu_price');
-    // $sellCpu->cpu_tailbar = $req->input('cpu_tailbar');
-
     $sellcpu = $req->validate([
       'cpu_image' => 'nullable',
       'p_cpu_name' => 'required',
@@ -51,14 +39,6 @@ class SellController extends Controller
       'p_cpu_price' => 'required|numeric',
       'cpu_tailbar' => 'nullable'
     ]);
-
-    // if ($req->hasFile('cpu_image')) {
-    //   $file = $req->file('cpu_image');
-    //   $extention = $file->getClientOriginalExtension();
-    //   $filename = time() . '.' . $extention;
-    //   $file->move('public/pics', $filename);
-    //   $sellCpu->cpu_image = $filename;
-    // }
 
     $req->user()->userpCpu()->create($sellcpu);
     return redirect(route('products.cpu'));
@@ -117,5 +97,130 @@ class SellController extends Controller
 
     $req->user()->userpMobo()->create($sellmobo);
     return redirect(route('products.cooler'));
+  }
+
+  // Disk
+  public function showSellDisk(): Response
+  {
+    return Inertia::render('Sell/SellDiskPage', [
+      'user' => auth()->user()
+    ]);
+  }
+
+  public function sellDisk(Request $req)
+  {
+    $sellDisk = $req->validate([
+      'name' => 'required',
+      'capacity' => 'nullable|numeric',
+      'type' => 'nullable',
+      'cache' => 'required|numeric',
+      'interface' => 'nullable',
+      'price' => 'required',
+      'image' => 'nullable|image'
+    ]);
+    /** @var $image \Illuminate\Http\UploadedFile */
+
+    $image = $sellDisk['image'] ?? null;
+    if ($image) {
+      $sellDisk['image'] = $image->store('disk/' . Str::random(), 'public');
+    }
+
+    $req->user()->userpDisk()->create($sellDisk);
+
+    return to_route('products.storage');
+  }
+
+  // Gpu
+  public function showSellGpu(): Response
+  {
+    return Inertia::render('Sell/SellGpuPage', [
+      'user' => auth()->user()
+    ]);
+  }
+
+  public function sellGpu(Request $req)
+  {
+    $sellGpu = $req->validate([
+      'name' => 'required',
+      'chipset' => 'required',
+      'memory' => 'nullable',
+      'c_clock' => 'required|numeric',
+      'b_clock' => 'nullable',
+      'color' => 'nullable',
+      'length' => 'nullable',
+      'price' => 'required',
+      'image' => 'nullable|image'
+    ]);
+    /** @var $image \Illuminate\Http\UploadedFile */
+
+    $image = $sellGpu['image'] ?? null;
+    if ($image) {
+      $sellGpu['image'] = $image->store('GPU/' . Str::random(), 'public');
+    }
+
+    $req->user()->userpGpu()->create($sellGpu);
+
+    return to_route('products.gpu');
+  }
+
+  // PSU
+  public function showSellPsu(): Response
+  {
+    return Inertia::render('Sell/SellPsuPage', [
+      'user' => auth()->user()
+    ]);
+  }
+
+  public function sellPsu(Request $req)
+  {
+    $sellPsu = $req->validate([
+      'name' => 'required',
+      'buteemj' => 'nullable',
+      'watt' => 'nullable|numeric',
+      'modular' => 'required',
+      'color' => 'nullable',
+      'price' => 'required',
+      'image' => 'nullable|image'
+    ]);
+    /** @var $image \Illuminate\Http\UploadedFile */
+
+    $image = $sellPsu['image'] ?? null;
+    if ($image) {
+      $sellPsu['image'] = $image->store('PSU/' . Str::random(), 'public');
+    }
+
+    $req->user()->userpPsu()->create($sellPsu);
+
+    return to_route('products.psu');
+  }
+
+  // Case
+  public function showSellCase(): Response
+  {
+    return Inertia::render('Sell/SellCasePage', [
+      'user' => auth()->user()
+    ]);
+  }
+
+  public function sellCase(Request $req)
+  {
+    $sellCase = $req->validate([
+      'name' => 'required',
+      'type' => 'nullable',
+      'color' => 'nullable',
+      's_panel' => 'required',
+      'price' => 'required',
+      'image' => 'nullable|image'
+    ]);
+    /** @var $image \Illuminate\Http\UploadedFile */
+
+    $image = $sellCase['image'] ?? null;
+    if ($image) {
+      $sellCase['image'] = $image->store('case/' . Str::random(), 'public');
+    }
+
+    $req->user()->userpCase()->create($sellCase);
+
+    return to_route('products.case');
   }
 }
