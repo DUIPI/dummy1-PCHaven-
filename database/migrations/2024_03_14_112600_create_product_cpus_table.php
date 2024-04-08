@@ -14,14 +14,14 @@ return new class extends Migration
         Schema::create('product_cpus', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->string('p_cpu_name')->strip_tags();
+            $table->foreignId('name')->references('id')->on('cpus');
             $table->tinyInteger('core_count');
             $table->float('core_clock');
             $table->float('boost_clock')->nullable();
             $table->smallInteger('tdp')->nullable();
-            $table->string('int_graphics')->nullable()->strip_tags();
-            $table->integer('p_cpu_price');
-            $table->text('cpu_tailbar')->nullable()->strip_tags();
+            $table->string('graphics')->nullable()->strip_tags();
+            $table->integer('price');
+            $table->text('tailbar')->nullable()->strip_tags();
             $table->string('image')->nullable();
             $table->timestamps();
         });

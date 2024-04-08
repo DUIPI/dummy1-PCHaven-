@@ -11,19 +11,24 @@ class ProductCpu extends Model
     use HasFactory;
 
     protected $fillable = [
-      'p_cpu_name',
+      'name',
       'core_count',
       'core_clock',
       'boost_clock',
       'tdp',
-      'int_graphics',
-      'p_cpu_price',
-      'cpu_tailbar',
+      'graphics',
+      'price',
+      'tailbar',
       'image'
     ];
   
     public function user(): BelongsTo
     {
       return $this->belongsTo(User::class);
+    }
+
+    public function cpuName():  BelongsTo
+    {
+      return $this->belongsTo(Cpu::class, 'name');
     }
 }

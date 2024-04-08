@@ -45,6 +45,7 @@ class User extends Authenticatable
     'password' => 'hashed',
   ];
 
+  //Admin relationships
 
   public function userSockets(): HasMany
   {
@@ -54,6 +55,16 @@ class User extends Authenticatable
   public function userCPU(): HasMany
   {
     return $this->hasMany(Cpu::class);
+  }
+
+  public function userRam(): HasMany
+  {
+    return $this->hasMany(Memory::class);
+  }
+
+  public function userMobo(): HasMany
+  {
+    return $this->hasMany(MoBo::class);
   }
 
   //Products relationships

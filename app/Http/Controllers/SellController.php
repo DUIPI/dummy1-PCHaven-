@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\AdminCpuResource;
+use App\Models\Cpu;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -21,27 +23,38 @@ class SellController extends Controller
   //CPU
   public function showSellCpu(): Response
   {
+    $cpus = Cpu::query()->orderBy('cpu_name', 'asc')->get();
+
     return Inertia::render('Sell/SellCpuPage', [
-      'user' => auth()->user()
+      'user' => auth()->user(),
+      'cpus' => AdminCpuResource::collection($cpus)
     ]);
   }
 
-  public function sellCpu(Request $req): RedirectResponse
+  public function sellCpu(Request $req)
   {
-    $sellcpu = $req->validate([
-      'cpu_image' => 'nullable',
-      'p_cpu_name' => 'required',
+    $sellCpu = $req->validate([
+      'image' => 'nullable',
+      'name' => 'required',
       'core_count' => 'required|numeric',
       'core_clock' => 'required|numeric',
       'boost_clock' => 'nullable|numeric',
       'tdp' => 'nullable|numeric',
-      'int_graphics' => 'nullable',
-      'p_cpu_price' => 'required|numeric',
-      'cpu_tailbar' => 'nullable'
+      'graphics' => 'nullable',
+      'price' => 'required|numeric',
+      'tailbar' => 'nullable',
+      'image' => 'nullable|image'
     ]);
 
-    $req->user()->userpCpu()->create($sellcpu);
-    return redirect(route('products.cpu'));
+    /** @var $image \Illuminate\Http\UploadedFile */
+
+    $image = $sellCpu['image'] ?? null;
+    if ($image) {
+      $sellCpu['image'] = $image->store('cpu/' . Str::random(), 'public');
+    }
+
+    $req->user()->userpCpu()->create($sellCpu);
+    return to_route('products.cpu');
   }
 
   //Cooler

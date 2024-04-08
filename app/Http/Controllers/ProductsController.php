@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\CaseResource;
 use App\Http\Resources\CoolersResource;
+use App\Http\Resources\CpuResource;
 use App\Http\Resources\DiskResource;
 use App\Http\Resources\GpuResource;
 use App\Http\Resources\PsuResource;
@@ -24,9 +25,12 @@ class ProductsController extends Controller
 
   public function productsCpu(): Response
   {
+    $query = ProductCpu::query()->latest();
+    $cpus = $query->paginate(10)->onEachSide(1);
+
     return Inertia::render('Products/Cpu', [
       'user' => auth()->user(),
-      'p_cpus' => ProductCpu::with('user:id,name')->latest()->get(),
+      'pcpus' => CpuResource::collection($cpus),
     ]);
   }
 

@@ -17,11 +17,14 @@ use Inertia\Inertia;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 // Admin page route
 Route::middleware('auth')->group(function () {
 
-  Route::post('masterside/cpu', [AdminController::class, 'storeCpu'])->name('masterside/cpu');
   Route::post('masterside/socket', [AdminController::class, 'storeSocket'])->name('masterside/socket');
+  Route::post('masterside/cpu', [AdminController::class, 'storeCpu'])->name('masterside/cpu');
+  Route::post('masterside/memory', [AdminController::class, 'storeRam'])->name('masterside/memory');
+  Route::post('masterside/mobo', [AdminController::class, 'storeMobo'])->name('masterside/mobo');
 
   Route::resource('masterside', AdminController::class);
 });
