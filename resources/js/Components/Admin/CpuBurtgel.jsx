@@ -30,7 +30,7 @@ export default function CpuBurtgel() {
         />
         <InputError message={errors.cpu_name} className="mt-2" />
 
-        <InputLabel htmlFor="cpu_socket" value="CPU -ний ID" />
+        <InputLabel htmlFor="cpu_socket" value="Socket ID" />
         <TextInput
           value={data.cpu_socket}
           placeholder="CPU сокетны нэрийг оруулах"

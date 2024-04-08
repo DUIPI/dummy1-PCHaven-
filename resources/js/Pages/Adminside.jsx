@@ -4,8 +4,11 @@ import SocketBurtgel from "@/Components/Admin/SocketBurtgel";
 import CpuBurtgel from "@/Components/Admin/CpuBurtgel";
 import ShowCpu from "@/Components/Admin/ShowCpu";
 import RamBurtgel from "@/Components/Admin/RamBurtgel";
+import ShowRam from "@/Components/Admin/ShowRam";
+import MoboBurtgel from "@/Components/Admin/MoboBurtgel";
+import ShowMobo from "@/Components/Admin/ShowMobo";
 
-export default function Adminside({ sockets, cpus }) {
+export default function Adminside({ sockets, cpus, rams, mobos }) {
   return (
     <>
       <Head title="Эд анги бүртгэл" />
@@ -34,6 +37,17 @@ export default function Adminside({ sockets, cpus }) {
         </div>
 
         <RamBurtgel />
+        <div>
+          {rams.map((ram) => (
+            <ShowRam key={ram.id} ram={ram} />
+          ))}
+        </div>
+        <MoboBurtgel />
+        <div>
+          {mobos.map((mobo) => (
+            <ShowMobo key={mobo.id} mobo={mobo} />
+          ))}
+        </div>
       </div>
     </>
   );

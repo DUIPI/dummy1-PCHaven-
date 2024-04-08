@@ -20,20 +20,18 @@ export default function MoboBurtgel() {
   return (
     <div className="max-w-2xl p-8 m-5">
       <form key={2} onSubmit={submit}>
-        <InputLabel htmlFor="mobo_name" value="CPU нэр" />
+        <InputLabel htmlFor="mobo_name" value="Motherboard нэр" />
         <TextInput
           value={data.mobo_name}
-          placeholder="CPU нэрийг оруулах"
           className="mt-1 block w-full"
           onChange={(e) => setData("mobo_name", e.target.value)}
           required
         />
         <InputError message={errors.mobo_name} className="mt-2" />
 
-        <InputLabel htmlFor="mobo_socket" value="CPU -ний ID" />
+        <InputLabel htmlFor="mobo_socket" value="Socket ID" />
         <TextInput
           value={data.mobo_socket}
-          placeholder="CPU сокетны нэрийг оруулах"
           className="mt-1 block w-full"
           onChange={(e) => setData("mobo_socket", e.target.value)}
           required

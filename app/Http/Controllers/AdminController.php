@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cpu;
+use App\Models\Memory;
+use App\Models\MoBo;
 use App\Models\Socket;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -17,6 +19,8 @@ class AdminController extends Controller
     return Inertia::render('Adminside', [
       'sockets' => Socket::with('user:id,name')->latest()->get(),
       'cpus' => Cpu::with('user:id,name')->latest()->get(),
+      'rams' => Memory::with('user:id,name')->latest()->get(),
+      'mobos' => MoBo::with('user:id,name')->latest()->get(),
     ]);
   }
 

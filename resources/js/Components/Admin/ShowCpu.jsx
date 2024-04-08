@@ -11,7 +11,7 @@ export default function ShowSocket({ cpu }) {
               <small className="ml-2 text-sm text-gray-600">{new Date(cpu.created_at).toLocaleString()}</small>
             </div>
           </div>
-            <p className="mt-4 text-lg text-gray-900">ID: {cpu.id} CPU name: {cpu.cpu_name} Socket: {cpu.cpu_socket}</p>
+            <p className="mt-4 text-lg text-gray-900">ID: {cpu.id} CPU: {cpu.cpu_name} Socket: {cpu.cpu_socket}</p>
         </div>
       </div>
     </>
