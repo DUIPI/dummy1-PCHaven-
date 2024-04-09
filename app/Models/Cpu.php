@@ -21,7 +21,7 @@ class Cpu extends Model
     return $this->belongsTo(User::class);
   }
 
-  public function cpus(): HasMany
+  public function cpus_rel(): HasMany
   {
     return $this->hasMany(ProductCpu::class);
   }

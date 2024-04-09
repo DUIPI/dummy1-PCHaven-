@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class AdminCpuResource extends JsonResource
+class AdminRamResource extends JsonResource
 {
   /**
    * Transform the resource into an array.
@@ -15,9 +15,12 @@ class AdminCpuResource extends JsonResource
   public function toArray(Request $request): array
   {
     return [
-      'id' => $this->id,
-      'cpu_name' => $this->cpu_name,
-      'cpu_socket' => $this->cpu_socket
+      'id'=>$this->id,
+      'memory_gen'=>$this->memory_gen,
+      'mem_socket' => $this->mem_socket,
+      'mem_socket1' => $this->mem_socket1,
+      'mem_socket2' => $this->mem_socket2,
+      'mem_socket3' => $this->mem_socket3,
     ];
   }
 }

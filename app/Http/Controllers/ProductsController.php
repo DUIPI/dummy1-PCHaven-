@@ -7,7 +7,9 @@ use App\Http\Resources\CoolersResource;
 use App\Http\Resources\CpuResource;
 use App\Http\Resources\DiskResource;
 use App\Http\Resources\GpuResource;
+use App\Http\Resources\MoboResource;
 use App\Http\Resources\PsuResource;
+use App\Http\Resources\RamResource;
 use App\Models\ProductCase;
 use App\Models\ProductCooler;
 use App\Models\ProductCpu;
@@ -36,17 +38,23 @@ class ProductsController extends Controller
 
   public function productsMobo(): Response
   {
+    $query = ProductMobo::query()->latest();
+    $mobos = $query->paginate(10)->onEachSide(1);
+
     return Inertia::render('Products/Motherboard', [
       'user' => auth()->user(),
-      'mobos' => ProductMobo::with('user:id,name')->latest()->get()
+      'pmobos' => MoboResource::collection($mobos)
     ]);
   }
 
   public function productsMemory(): Response
   {
+    $query = ProductRam::query();
+    $rams = $query->paginate(10)->onEachSide(1);
+
     return Inertia::render('Products/Memory', [
       'user' => auth()->user(),
-      'mems' => ProductRam::with('user:id,name')->latest()->get()
+      'show_mems' => RamResource::collection($rams)
     ]);
   }
 

@@ -20,9 +20,4 @@ class MoBo extends Model
   {
     return $this->belongsTo(User::class);
   }
-
-  public function mobos(): HasMany
-  {
-    return $this->hasMany(ProductMobo::class);
-  }
 }

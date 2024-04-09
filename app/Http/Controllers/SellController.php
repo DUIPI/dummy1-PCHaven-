@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\AdminCpuResource;
+use App\Http\Resources\AdminMoboResource;
+use App\Http\Resources\AdminRamResource;
 use App\Models\Cpu;
+use App\Models\Memory;
+use App\Models\Socket;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -34,7 +38,6 @@ class SellController extends Controller
   public function sellCpu(Request $req)
   {
     $sellCpu = $req->validate([
-      'image' => 'nullable',
       'name' => 'required',
       'core_count' => 'required|numeric',
       'core_clock' => 'required|numeric',
@@ -55,6 +58,76 @@ class SellController extends Controller
 
     $req->user()->userpCpu()->create($sellCpu);
     return to_route('products.cpu');
+  }
+
+  //Ram
+  public function showSellRam(): Response
+  {
+    $rams = Memory::query()->orderBy('memory_gen', 'asc')->get();
+
+    return Inertia::render('Sell/SellRamPage', [
+      'user' => auth()->user(),
+      'rams_api' => AdminRamResource::collection($rams)
+    ]);
+  }
+
+  public function sellRam(Request $req)
+  {
+    $sellRam = $req->validate([
+      'name'=>'required',
+      'gen'=>'required|exists:memories,id',
+      'speed'=>'required|numeric',
+      'modules'=>'required',
+      'color'=>'required',
+      'price'=>'required',
+      'image'=>'nullable|image',
+    ]);
+
+    /** @var $image \Illuminate\Http\UploadedFile */
+
+    $image = $sellRam['image'] ?? null;
+    if ($image) {
+      $sellRam['image'] = $image->store('ram/' . Str::random(), 'public');
+    }
+
+    $req->user()->userpRam()->create($sellRam);
+    return to_route('products.memory');
+  }
+
+
+  //Motherboard
+  public function showSellMobo(): Response
+  {
+    $mobos = Socket::query()->orderBy('socket_name', 'asc')->get();
+
+    return Inertia::render('Sell/SellMoboPage', [
+      'user' => auth()->user(),
+      'mobos' => AdminMoboResource::collection($mobos)
+    ]);
+  }
+
+  public function sellMobo(Request $req)
+  {
+    $sellmobo = $req->validate([
+      'name' => 'required',
+      'socket' => 'required|exists:sockets,id',
+      'hemjee' => 'nullable',
+      'memory_max' => 'required',
+      'memory_slot' => 'required',
+      'color' => 'required',
+      'price' => 'required',
+      'image' => 'nullable|image'
+    ]);
+
+    /** @var $image \Illuminate\Http\UploadedFile */
+
+    $image = $sellmobo['image'] ?? null;
+    if ($image) {
+      $sellmobo['image'] = $image->store('mobo/' . Str::random(), 'public');
+    }
+
+    $req->user()->userpMobo()->create($sellmobo);
+    return to_route('products.mobo');
   }
 
   //Cooler
@@ -88,29 +161,6 @@ class SellController extends Controller
     return to_route('products.cooler');
   }
 
-  //Motherboard
-  public function showSellMobo(): Response
-  {
-    return Inertia::render('Sell/SellMoboPage', [
-      'user' => auth()->user()
-    ]);
-  }
-
-  public function sellMobo(Request $req): RedirectResponse
-  {
-    $sellmobo = $req->validate([
-      'name' => 'required',
-      'socket' => 'required',
-      'hemjee' => 'required',
-      'memory_max' => 'required',
-      'memory_slot' => 'required',
-      'color' => 'required',
-      'price' => 'required'
-    ]);
-
-    $req->user()->userpMobo()->create($sellmobo);
-    return redirect(route('products.cooler'));
-  }
 
   // Disk
   public function showSellDisk(): Response

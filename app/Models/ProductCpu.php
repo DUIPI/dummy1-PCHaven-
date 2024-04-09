@@ -8,27 +8,27 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class ProductCpu extends Model
 {
-    use HasFactory;
+  use HasFactory;
 
-    protected $fillable = [
-      'name',
-      'core_count',
-      'core_clock',
-      'boost_clock',
-      'tdp',
-      'graphics',
-      'price',
-      'tailbar',
-      'image'
-    ];
-  
-    public function user(): BelongsTo
-    {
-      return $this->belongsTo(User::class);
-    }
+  protected $fillable = [
+    'name',
+    'core_count',
+    'core_clock',
+    'boost_clock',
+    'tdp',
+    'graphics',
+    'price',
+    'tailbar',
+    'image'
+  ];
 
-    public function cpuName():  BelongsTo
-    {
-      return $this->belongsTo(Cpu::class, 'name');
-    }
+  public function user(): BelongsTo
+  {
+    return $this->belongsTo(User::class);
+  }
+
+  public function cpuName(): BelongsTo
+  {
+    return $this->belongsTo(Cpu::class, 'name');
+  }
 }

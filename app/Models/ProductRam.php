@@ -8,10 +8,25 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class ProductRam extends Model
 {
-    use HasFactory;
+  use HasFactory;
 
-    public function user(): BelongsTo
-    {
-      return $this->belongsTo(User::class);
-    }
+  protected $fillable = [
+    'name',
+    'gen',
+    'speed',
+    'modules',
+    'color',
+    'price',
+    'image'
+  ];
+
+  public function user(): BelongsTo
+  {
+    return $this->belongsTo(User::class);
+  }
+
+  public function gen_rel(): BelongsTo
+  {
+    return $this->belongsTo(Memory::class, 'gen');
+  }
 }

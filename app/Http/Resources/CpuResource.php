@@ -16,6 +16,7 @@ class CpuResource extends JsonResource
   public function toArray(Request $request): array
   {
     return [
+      'id'=>$this->id,
       'cpuname' => new AdminCpuResource($this->cpuname),
       'core_count'=>$this->core_count,
       'core_clock'=>$this->core_clock,

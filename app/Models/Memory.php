@@ -24,7 +24,7 @@ class Memory extends Model
     return $this->belongsTo(User::class);
   }
 
-  public function rams(): HasMany
+  public function rams_rel(): HasMany
   {
     return $this->hasMany(ProductRam::class);
   }

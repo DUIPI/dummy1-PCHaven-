@@ -16,6 +16,7 @@ export default function Sell(auth) {
           <div><Link href={route('sell.cpu')}>Процессор</Link></div>
           <div><Link href={route('sell.cooler')}>Хөргүүр</Link></div>
           <div><Link href={route('sell.mobo')}>Эх хавтан</Link></div>
+          <div><Link href={route('sell.ram')}>Санах ой</Link></div>
           <div><Link href={route('sell.disk')}>Диск</Link></div>
           <div><Link href={route('sell.gpu')}>График кард</Link></div>
           <div><Link href={route('sell.psu')}>Тэжээлийн блок</Link></div>

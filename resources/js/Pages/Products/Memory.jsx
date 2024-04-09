@@ -3,7 +3,7 @@ import TopNavMain from '@/Layouts/TopNavLayout';
 import { Head } from '@inertiajs/react';
 
 
-export default function Memory(auth) {
+export default function Memory({auth, show_mems}) {
   return (
     <>
       <TopNavMain 
@@ -11,9 +11,9 @@ export default function Memory(auth) {
               user = {auth.user} 
       > 
       <Head title='Санах ой'/>
-      <main>
-
-      </main>
+      <div>
+        <pre>{JSON.stringify(show_mems, undefined, 5)}</pre>
+      </div>
       </TopNavMain >
     </>
   )

@@ -53,8 +53,10 @@ export default function SellCpuComp({ cpus }) {
             onChange={(e) => setData("name", e.target.value)}
           >
             <option>CPU нэр сонгох*</option>
-            {cpus.data.map((cpu)=>(
-              <option value={cpu.id} key={cpu.id} >{cpu.cpu_name}</option>
+            {cpus.data.map((cpu) => (
+              <option value={cpu.id} key={cpu.id}>
+                {cpu.cpu_name}
+              </option>
             ))}
           </SelectInput>
           <InputError message={errors.name} className=" mb-2" />

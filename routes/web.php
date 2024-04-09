@@ -42,11 +42,14 @@ Route::middleware('auth')->group(function () {
     Route::get('sell/cpu', 'showSellCpu')->name('sell.cpu');
     Route::post('store/cpu', 'sellCpu')->name('store.cpu');
 
-    Route::get('sell/cpu-cooler', 'showSellCooler')->name('sell.cooler');
-    Route::post('store/cooler', 'sellCooler')->name('store.cooler');
+    Route::get('sell/memory', 'showSellRam')->name('sell.ram');
+    Route::post('store/ram', 'sellRam')->name('store.ram');
 
     Route::get('sell/motherboard', 'showSellMobo')->name('sell.mobo');
     Route::post('store/mobo', 'sellMobo')->name('store.mobo');
+
+    Route::get('sell/cpu-cooler', 'showSellCooler')->name('sell.cooler');
+    Route::post('store/cooler', 'sellCooler')->name('store.cooler');
 
     Route::get('sell/storage', 'showSellDisk')->name('sell.disk');
     Route::post('store/disk', 'sellDisk')->name('store.disk');
@@ -56,7 +59,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('sell/psu', 'showSellPsu')->name('sell.psu');
     Route::post('store/psu', 'sellPsu')->name('store.psu');
-    
+
     Route::get('sell/case', 'showSellCase')->name('sell.case');
     Route::post('store/case', 'sellCase')->name('store.case');
 

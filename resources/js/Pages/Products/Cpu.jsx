@@ -17,6 +17,8 @@ export default function Cpu({ auth, pcpus }) {
       />
       <Head title="Процессор" />
 
+      <pre>{JSON.stringify(pcpus, undefined, 5)}</pre>
+
       <div className="py-12 flex flex-wrap">
         {pcpus.data.map((pcpu) => (
           <a
@@ -48,9 +50,8 @@ export default function Cpu({ auth, pcpus }) {
                 Үнэ: <b>{pcpu.price}₮</b>
               </div>
               <button className="mt-12 flex">
-              <PrimaryButton>Сонгох</PrimaryButton>
+                <PrimaryButton>Сонгох</PrimaryButton>
               </button>
-                
             </span>
           </a>
         ))}
