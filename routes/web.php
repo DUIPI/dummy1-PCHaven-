@@ -1,10 +1,9 @@
 <?php
 
-use App\Http\Controllers\DulgnController;
-use App\Http\Controllers\PostController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProfileController;
-use App\Models\Posts;
-use Illuminate\Foundation\Application;
+use App\Http\Controllers\SellController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -19,49 +18,88 @@ use Inertia\Inertia;
 |
 */
 
+// Admin page route
+Route::middleware('auth')->group(function () {
+
+  Route::post('masterside/socket', [AdminController::class, 'storeSocket'])->name('masterside/socket');
+  Route::post('masterside/cpu', [AdminController::class, 'storeCpu'])->name('masterside/cpu');
+  Route::post('masterside/memory', [AdminController::class, 'storeRam'])->name('masterside/memory');
+  Route::post('masterside/mobo', [AdminController::class, 'storeMobo'])->name('masterside/mobo');
+
+  Route::resource('masterside', AdminController::class);
+});
 
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register')
-    ]);
+  return Inertia::render('Welcome', [
+    'canLogin' => Route::has('login'),
+    'canRegister' => Route::has('register')
+  ]);
 });
+
+//Sell pages routes
+Route::middleware('auth')->group(function () {
+  Route::controller(SellController::class)->group(function () {
+    Route::get('sell/cpu', 'showSellCpu')->name('sell.cpu');
+    Route::post('store/cpu', 'sellCpu')->name('store.cpu');
+
+    Route::get('sell/memory', 'showSellRam')->name('sell.ram');
+    Route::post('store/ram', 'sellRam')->name('store.ram');
+
+    Route::get('sell/motherboard', 'showSellMobo')->name('sell.mobo');
+    Route::post('store/mobo', 'sellMobo')->name('store.mobo');
+
+    Route::get('sell/cpu-cooler', 'showSellCooler')->name('sell.cooler');
+    Route::post('store/cooler', 'sellCooler')->name('store.cooler');
+
+    Route::get('sell/storage', 'showSellDisk')->name('sell.disk');
+    Route::post('store/disk', 'sellDisk')->name('store.disk');
+
+    Route::get('sell/gpu', 'showSellGpu')->name('sell.gpu');
+    Route::post('store/gpu', 'sellGpu')->name('store.gpu');
+
+    Route::get('sell/psu', 'showSellPsu')->name('sell.psu');
+    Route::post('store/psu', 'sellPsu')->name('store.psu');
+
+    Route::get('sell/case', 'showSellCase')->name('sell.case');
+    Route::post('store/case', 'sellCase')->name('store.case');
+
+    Route::resource('sell', SellController::class);
+  });
+});
+
+//Products pages routes
+Route::controller(ProductsController::class)->group(function () {
+  Route::get('products/cpu', 'productsCpu')->name('products.cpu');
+  Route::get('products/cpu-cooler', 'productsCooler')->name('products.cooler');
+  Route::get('products/motherboard', 'productsMobo')->name('products.mobo');
+  Route::get('products/memory', 'productsMemory')->name('products.memory');
+  Route::get('products/storage', 'productsStorage')->name('products.storage');
+  Route::get('products/graphics-card', 'productsGpu')->name('products.gpu');
+  Route::get('products/power-supply', 'productsPsu')->name('products.psu');
+  Route::get('products/case', 'productsCase')->name('products.case');
+
+  Route::resource('products', ProductsController::class);
+});
+
+
+
+Route::get('pcbuilder', function () {
+  return Inertia::render('PCbuilder');
+})->name('pcbuilder');
+
+
+
+
 
 
 Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
+  return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+  Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+  Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+  Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
-
-
-
-// // ---------Testing here
-
-// Route::get('/home', function() {
-
-//     $posts = [];
-
-//     if(auth()->check()){
-//         $posts = auth()->user()->userPosts()->latest()->get();
-//     }
-
-//     return view('homePage', ['posts'=>$posts]);
-// });
-// // User routes
-// Route::post('/register', [DulgnController::class, 'register']);
-// Route::post('/login', [DulgnController::class, 'login']);
-// Route::post('/logout', [DulgnController::class, 'logout']);
-
-// //Posts routes
-// Route::post('/create-post', [PostController::class, 'createPost']);
-// Route::get('/edit-post/{post}', [PostController::class, 'showEditScreen']);
-// Route::put('/edit-post/{post}', [PostController::class, 'updatePost']);
-// Route::delete('/delete-post/{post}', [PostController::class, 'deletePost']);
-
+require __DIR__ . '/auth.php';
