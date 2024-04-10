@@ -17,8 +17,8 @@ class RamResource extends JsonResource
   {
     return [
       'id' => $this->id,
-      'gen'=>$this->gen,
-      'gen_info'=> new AdminRamResource($this->gen_info),
+      'name'=>$this->name,
+      'genInfo'=> new AdminRamResource($this->genInfo),
       'speed'=>$this->speed,
       'modules'=>$this->modules,
       'color'=>$this->color,

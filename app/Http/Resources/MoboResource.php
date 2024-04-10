@@ -19,7 +19,7 @@ class MoboResource extends JsonResource
       'id' => $this->id,
       'name' => $this->name,
       'socket' => $this->socket,
-      'sockets_info' => new AdminMoboResource($this->sockets_info),
+      'socketInfo' => new AdminMoboResource($this->socketInfo),
       'hemjee' => $this->hemjee,
       'memory_max' => $this->memory_max,
       'memory_slot' => $this->memory_slot,

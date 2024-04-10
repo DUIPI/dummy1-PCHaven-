@@ -26,7 +26,7 @@ class ProductMobo extends Model
     return $this->belongsTo(User::class);
   }
 
-  public function socket_rel(): BelongsTo
+  public function socketInfo(): BelongsTo
   {
     return $this->belongsTo(Socket::class, 'socket');
   }

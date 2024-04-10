@@ -25,7 +25,7 @@ class ProductRam extends Model
     return $this->belongsTo(User::class);
   }
 
-  public function gen_rel(): BelongsTo
+  public function genInfo(): BelongsTo
   {
     return $this->belongsTo(Memory::class, 'gen');
   }

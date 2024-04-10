@@ -16,9 +16,8 @@ export default function Motherboard({ auth, pmobos }) {
         user={auth.user}
       >
         <Head title="Эх хавтан" />
-        <pre>{JSON.stringify(pmobos, undefined, 5)}</pre>
 
-        {/* <div className="py-12 flex flex-wrap">
+        <div className="py-12 flex flex-wrap">
           {pmobos.data.map((pmobo) => (
             <a
               key={pmobo.id}
@@ -34,19 +33,19 @@ export default function Motherboard({ auth, pmobos }) {
                   {pmobo.name}
                 </div>
                 <div className="mb-1 font-normal text-gray-700">
-                  Эргэлтийн хурд: <b>{pmobo.socketsname.socket_name} bpm</b>
+                  Сокет: <b>{pmobo.socketInfo.socket_name} </b>
                 </div>
                 <div className="mb-1 font-normal text-gray-700">
-                  Дууны хэмжээ: <b>{pmobo.hemjee} дБ</b>
+                  Хэмжээний төрөл: <b>{pmobo.hemjee} </b>
                 </div>
                 <div className="mb-1 font-normal text-gray-700">
-                  Өнгө: <b>{pmobo.memory_max}</b>
+                  Дэмжих санах ой: <b>{pmobo.memory_max} Gb</b>
                 </div>
                 <div className="mb-1 font-normal text-gray-700">
-                  Хэмжээ: <b>{pmobo.memory_slot} мм</b>
+                  Ram оролтын тоо: <b>{pmobo.memory_slot} ш</b>
                 </div>
                 <div className="mb-1 font-normal text-gray-700">
-                  Хэмжээ: <b>{pmobo.color} мм</b>
+                  Өнгө: <b>{pmobo.color} </b>
                 </div>
                 <div className="mb-1 font-normal text-gray-700">
                   Үнэ: <b>{pmobo.price}₮</b>
@@ -57,8 +56,8 @@ export default function Motherboard({ auth, pmobos }) {
               </span>
             </a>
           ))}
-        </div> */}
-        {/* <Pagination links={pmobos.meta.links} /> */}
+        </div>
+        <Pagination links={pmobos.meta.links} />
       </TopNavMain>
     </>
   );
