@@ -1,10 +1,15 @@
 import React from "react";
 import TopNavMain from "@/Layouts/TopNavLayout";
-import { Head } from "@inertiajs/react";
+import { Head, router } from "@inertiajs/react";
 import PrimaryButton from "@/Components/PrimaryButton";
 import Pagination from "@/Components/Pagination";
 
 export default function Motherboard({ auth, pmobos }) {
+  const addToList = (mobo) => {
+    router.post(route("add.mobo"), {
+      mobo,
+    });
+  };
   return (
     <>
       <TopNavMain
@@ -16,7 +21,7 @@ export default function Motherboard({ auth, pmobos }) {
         user={auth.user}
       >
         <Head title="Эх хавтан" />
-      <pre>{JSON.stringify(pmobos, undefined, 5)}</pre>
+      {/* <pre>{JSON.stringify(pmobos, undefined, 5)}</pre> */}
 
 
         <div className="py-12 flex flex-wrap">
@@ -53,7 +58,7 @@ export default function Motherboard({ auth, pmobos }) {
                   Үнэ: <b>{pmobo.price}₮</b>
                 </div>
                 <button className="mt-12 flex">
-                  <PrimaryButton>Сонгох</PrimaryButton>
+                  <PrimaryButton onClick={() => addToList(pmobo)}>Сонгох</PrimaryButton>
                 </button>
               </span>
             </a>

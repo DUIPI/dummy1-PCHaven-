@@ -1,10 +1,15 @@
 import React from "react";
 import TopNavMain from "@/Layouts/TopNavLayout";
-import { Head } from "@inertiajs/react";
+import { Head, router } from "@inertiajs/react";
 import Pagination from "@/Components/Pagination";
 import PrimaryButton from "@/Components/PrimaryButton";
 
 export default function Case({ auth, cases }) {
+  const addToList = (casee) => {
+    router.post(route("add.casee"), {
+      casee,
+    });
+  };
   return (
     <>
       <TopNavMain
@@ -44,7 +49,7 @@ export default function Case({ auth, cases }) {
                   Үнэ: <b>{kase.price}₮</b>
                 </div>
                 <button className="mt-12 flex">
-                  <PrimaryButton>Сонгох</PrimaryButton>
+                  <PrimaryButton onClick={() => addToList(kase)}>Сонгох</PrimaryButton>
                 </button>
               </span>
             </a>

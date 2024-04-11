@@ -1,11 +1,16 @@
 import React from 'react'
 import TopNavMain from '@/Layouts/TopNavLayout';
-import { Head } from '@inertiajs/react';
+import { Head, router } from "@inertiajs/react";
 import Pagination from '@/Components/Pagination';
 import PrimaryButton from '@/Components/PrimaryButton';
 
 
 export default function Psu({auth, psus}) {
+  const addToList = (psu) => {
+    router.post(route("add.psu"), {
+      psu,
+    });
+  };
   return (
     <>
       <TopNavMain 
@@ -45,7 +50,7 @@ export default function Psu({auth, psus}) {
                 Үнэ: <b>{psu.price}₮</b>
               </div>
               <button className="mt-12 flex">
-              <PrimaryButton>Сонгох</PrimaryButton>
+              <PrimaryButton onClick={() => addToList(psu)}>Сонгох</PrimaryButton>
               </button>
                 
             </span>

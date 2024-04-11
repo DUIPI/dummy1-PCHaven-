@@ -1,10 +1,15 @@
 import React from "react";
 import TopNavMain from "@/Layouts/TopNavLayout";
-import { Head } from "@inertiajs/react";
+import { Head, router } from "@inertiajs/react";
 import Pagination from "@/Components/Pagination";
 import PrimaryButton from "@/Components/PrimaryButton";
 
 export default function CpuCooler({ auth, coolers }) {
+  const addToList = (cooler) => {
+    router.post(route("add.cooler"), {
+      cooler,
+    });
+  };
   return (
     <>
       <TopNavMain
@@ -48,7 +53,7 @@ export default function CpuCooler({ auth, coolers }) {
                 Үнэ: <b>{cooler.price}₮</b>
               </div>
               <button className="mt-12 flex">
-              <PrimaryButton>Сонгох</PrimaryButton>
+              <PrimaryButton onClick={() => addToList(cooler)}>Сонгох</PrimaryButton>
               </button>
                 
             </span>

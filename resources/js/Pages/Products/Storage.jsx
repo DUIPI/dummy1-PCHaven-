@@ -1,10 +1,15 @@
 import React from "react";
 import TopNavMain from "@/Layouts/TopNavLayout";
-import { Head } from "@inertiajs/react";
+import { Head, router } from "@inertiajs/react";
 import PrimaryButton from "@/Components/PrimaryButton";
 import Pagination from "@/Components/Pagination";
 
 export default function Storage({ auth, disks }) {
+  const addToList = (disk) => {
+    router.post(route("add.disk"), {
+      disk,
+    });
+  };
   return (
     <>
       <TopNavMain
@@ -48,7 +53,7 @@ export default function Storage({ auth, disks }) {
                   Үнэ: <b>{disk.price}₮</b>
                 </div>
                 <button className="mt-12 flex">
-                  <PrimaryButton>Сонгох</PrimaryButton>
+                  <PrimaryButton onClick={() => addToList(disk)}>Сонгох</PrimaryButton>
                 </button>
               </span>
             </a>

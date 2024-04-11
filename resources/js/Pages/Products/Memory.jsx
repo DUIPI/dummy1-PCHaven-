@@ -1,20 +1,29 @@
-import React from 'react'
-import TopNavMain from '@/Layouts/TopNavLayout';
-import { Head } from '@inertiajs/react';
-import PrimaryButton from '@/Components/PrimaryButton';
-import Pagination from '@/Components/Pagination';
+import React from "react";
+import TopNavMain from "@/Layouts/TopNavLayout";
+import { Head, router } from "@inertiajs/react";
+import PrimaryButton from "@/Components/PrimaryButton";
+import Pagination from "@/Components/Pagination";
 
+export default function Memory({ auth, show_mems }) {
 
-export default function Memory({auth, show_mems}) {
+  const addToList = (ram) => {
+    router.post(route("add.ram"), {
+      ram,
+    });
+  };
   return (
     <>
-      <TopNavMain 
-              header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Санах ой</h2>}
-              user = {auth.user} 
-      > 
-      <Head title='Санах ой'/>
+      <TopNavMain
+        header={
+          <h2 className="font-semibold text-xl text-gray-800 leading-tight">
+            Санах ой
+          </h2>
+        }
+        user={auth.user}
+      >
+        <Head title="Санах ой" />
 
-      <div className="py-12 flex flex-wrap">
+        <div className="py-12 flex flex-wrap">
           {show_mems.data.map((memory) => (
             <a
               key={memory.id}
@@ -45,14 +54,14 @@ export default function Memory({auth, show_mems}) {
                   Үнэ: <b>{memory.price}₮</b>
                 </div>
                 <button className="mt-12 flex">
-                  <PrimaryButton>Сонгох</PrimaryButton>
+                  <PrimaryButton onClick={() => addToList(memory)}>Сонгох</PrimaryButton>
                 </button>
               </span>
             </a>
           ))}
         </div>
         <Pagination links={show_mems.meta.links} />
-      </TopNavMain >
+      </TopNavMain>
     </>
-  )
+  );
 }

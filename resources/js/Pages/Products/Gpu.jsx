@@ -1,10 +1,15 @@
 import React from "react";
 import TopNavMain from "@/Layouts/TopNavLayout";
-import { Head } from "@inertiajs/react";
+import { Head, router } from "@inertiajs/react";
 import PrimaryButton from "@/Components/PrimaryButton";
 import Pagination from "@/Components/Pagination";
 
 export default function Gpu({ auth, gpus }) {
+  const addToList = (gpu) => {
+    router.post(route("add.gpu"), {
+      gpu,
+    });
+  };
   return (
     <>
       <TopNavMain
@@ -47,7 +52,7 @@ export default function Gpu({ auth, gpus }) {
                   Үнэ: <b>{gpu.price}₮</b>
                 </div>
                 <button className="mt-12 flex">
-                  <PrimaryButton>Сонгох</PrimaryButton>
+                  <PrimaryButton onClick={() => addToList(gpu)}>Сонгох</PrimaryButton>
                 </button>
               </span>
             </a>

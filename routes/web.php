@@ -86,6 +86,14 @@ Route::controller(ProductsController::class)->group(function () {
 Route::controller(ListController::class)->group(function(){
 
   Route::post('add/cpu', 'addCpu')->name('add.cpu');
+  Route::post('add/mobo', 'addMobo')->name('add.mobo');
+  Route::post('add/ram', 'addRam')->name('add.ram');
+  Route::post('add/gpu', 'addGpu')->name('add.gpu');
+  Route::post('add/psu', 'addPsu')->name('add.psu');
+  Route::post('add/cooler', 'addCooler')->name('add.cooler');
+  Route::post('add/disk', 'addDisk')->name('add.disk');
+  Route::post('add/case', 'addCase')->name('add.case');
+
 
   Route::resource('pc-builder', ListController::class);
 });

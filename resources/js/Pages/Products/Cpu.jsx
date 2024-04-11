@@ -5,13 +5,11 @@ import Pagination from "@/Components/Pagination";
 import PrimaryButton from "@/Components/PrimaryButton";
 
 export default function Cpu({ auth, pcpus }) {
-
-  const addToList = (category, cpu) => {
-    router.post(route('add.cpu'), {
-      category,
-      cpu
-    })
-  }
+  const addToList = (cpu) => {
+    router.post(route("add.cpu"), {
+      cpu,
+    });
+  };
   return (
     <>
       <TopNavMain
@@ -57,7 +55,9 @@ export default function Cpu({ auth, pcpus }) {
                 Үнэ: <b>{pcpu.price}₮</b>
               </div>
               <button className="mt-12 flex">
-                <PrimaryButton onClick={()=>addToList('Cpu', pcpu)}>Сонгох</PrimaryButton>
+                <PrimaryButton onClick={() => addToList(pcpu)}>
+                  Сонгох
+                </PrimaryButton>
               </button>
             </span>
           </a>
