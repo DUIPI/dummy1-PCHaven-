@@ -46,7 +46,7 @@ export default function TopNavMain({user, header, children}) {
                 Зарах
               </PrimaryButton>
             </Link>
-            <NavLink href='/pcbuilder'>PC угсрах</NavLink>
+            <NavLink href={route('pc-builder.index')}>PC угсрах</NavLink>
           </div>
           <div>
             {user ? (

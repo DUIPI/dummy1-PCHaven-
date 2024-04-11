@@ -16,6 +16,8 @@ export default function Motherboard({ auth, pmobos }) {
         user={auth.user}
       >
         <Head title="Эх хавтан" />
+      <pre>{JSON.stringify(pmobos, undefined, 5)}</pre>
+
 
         <div className="py-12 flex flex-wrap">
           {pmobos.data.map((pmobo) => (

@@ -30,16 +30,16 @@ export default function Memory({auth, show_mems}) {
                   {memory.name}
                 </div>
                 <div className="mb-1 font-normal text-gray-700">
-                  Чипсет: <b>{memory.genInfo.memory_gen}</b>
+                  Gen: <b>{memory.genInfo.memory_gen}</b>
                 </div>
                 <div className="mb-1 font-normal text-gray-700">
-                  Санах ой: <b>{memory.speed} GB</b>
+                  Хурд: <b>{memory.speed} MHz</b>
                 </div>
                 <div className="mb-1 font-normal text-gray-700">
-                  Цөмийн хурд: <b>{memory.modules} Mhz</b>
+                  Модуль: <b>{memory.modules} Gb</b>
                 </div>
                 <div className="mb-1 font-normal text-gray-700">
-                  Цөмийн дээд хурд: <b>{memory.color} Mhz</b>
+                  Өнгө: <b>{memory.color} </b>
                 </div>
                 <div className="mb-1 font-normal text-gray-700">
                   Үнэ: <b>{memory.price}₮</b>

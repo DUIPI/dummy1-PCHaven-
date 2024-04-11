@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ListController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SellController;
@@ -81,14 +82,13 @@ Route::controller(ProductsController::class)->group(function () {
   Route::resource('products', ProductsController::class);
 });
 
+//PC-builder routes
+Route::controller(ListController::class)->group(function(){
 
+  Route::post('add/cpu', 'addCpu')->name('add.cpu');
 
-Route::get('pcbuilder', function () {
-  return Inertia::render('PCbuilder');
-})->name('pcbuilder');
-
-
-
+  Route::resource('pc-builder', ListController::class);
+});
 
 
 

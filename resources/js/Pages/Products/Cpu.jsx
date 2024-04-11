@@ -1,10 +1,17 @@
 import React from "react";
 import TopNavMain from "@/Layouts/TopNavLayout";
-import { Head } from "@inertiajs/react";
+import { Head, router } from "@inertiajs/react";
 import Pagination from "@/Components/Pagination";
 import PrimaryButton from "@/Components/PrimaryButton";
 
 export default function Cpu({ auth, pcpus }) {
+
+  const addToList = (category, cpu) => {
+    router.post(route('add.cpu'), {
+      category,
+      cpu
+    })
+  }
   return (
     <>
       <TopNavMain
@@ -17,7 +24,7 @@ export default function Cpu({ auth, pcpus }) {
       />
       <Head title="Процессор" />
 
-      <pre>{JSON.stringify(pcpus, undefined, 5)}</pre>
+      {/* <pre>{JSON.stringify(pcpus, undefined, 5)}</pre> */}
 
       <div className="py-12 flex flex-wrap">
         {pcpus.data.map((pcpu) => (
@@ -35,22 +42,22 @@ export default function Cpu({ auth, pcpus }) {
                 {pcpu.cpuname.cpu_name}
               </div>
               <div className="mb-1 font-normal text-gray-700">
-                Эргэлтийн хурд: <b>{pcpu.core_count} bpm</b>
+                Цөмийн тоо: <b>{pcpu.core_count} </b>
               </div>
               <div className="mb-1 font-normal text-gray-700">
-                Дууны хэмжээ: <b>{pcpu.core_clock} дБ</b>
+                Цөмийн хурд: <b>{pcpu.core_clock} Ghz</b>
               </div>
               <div className="mb-1 font-normal text-gray-700">
-                Өнгө: <b>{pcpu.boost_clock}</b>
+                Дээд хурд: <b>{pcpu.boost_clock} Ghz</b>
               </div>
               <div className="mb-1 font-normal text-gray-700">
-                Хэмжээ: <b>{pcpu.tdp} мм</b>
+                Тог зарцуулалт: <b>{pcpu.tdp} w</b>
               </div>
               <div className="mb-1 font-normal text-gray-700">
                 Үнэ: <b>{pcpu.price}₮</b>
               </div>
               <button className="mt-12 flex">
-                <PrimaryButton>Сонгох</PrimaryButton>
+                <PrimaryButton onClick={()=>addToList('Cpu', pcpu)}>Сонгох</PrimaryButton>
               </button>
             </span>
           </a>
