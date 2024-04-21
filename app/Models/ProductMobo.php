@@ -18,7 +18,8 @@ class ProductMobo extends Model
     'memory_slot',
     'color',
     'price',
-    'image'
+    'image',
+    'phone'
   ];
 
   public function user(): BelongsTo

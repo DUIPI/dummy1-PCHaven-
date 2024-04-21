@@ -21,6 +21,7 @@ return new class extends Migration
       $table->smallInteger('size')->nullable();
       $table->integer('price');
       $table->string('image')->nullable();
+      $table->integer('phone');
       $table->timestamps();
     });
   }

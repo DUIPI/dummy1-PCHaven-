@@ -23,6 +23,7 @@ return new class extends Migration
       $table->smallInteger('length');
       $table->integer('price');
       $table->string('image')->nullable();
+      $table->integer('phone');
       $table->timestamps();
     });
   }

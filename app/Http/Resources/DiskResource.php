@@ -25,6 +25,7 @@ class DiskResource extends JsonResource
       'interface' => $this->interface,
       'price' => $this->price,
       'image' => $this->image ? Storage::url($this->image) : '',
+      'phone' => $this->phone
     ];
   }
 }

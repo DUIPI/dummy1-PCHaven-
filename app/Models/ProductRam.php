@@ -17,7 +17,8 @@ class ProductRam extends Model
     'modules',
     'color',
     'price',
-    'image'
+    'image',
+    'phone'
   ];
 
   public function user(): BelongsTo

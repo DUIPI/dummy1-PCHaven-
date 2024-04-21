@@ -21,6 +21,7 @@ return new class extends Migration
       $table->string('interface');
       $table->integer('price');
       $table->string('image')->nullable();
+      $table->integer('phone');
       $table->timestamps();
     });
   }

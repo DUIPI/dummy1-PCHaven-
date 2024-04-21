@@ -16,14 +16,15 @@ class CaseResource extends JsonResource
   public function toArray(Request $request): array
   {
     return [
-      'id'=>$this->id,
-      'user_id'=>$this->user_id,
+      'id' => $this->id,
+      'user_id' => $this->user_id,
       'name' => $this->name,
       'type' => $this->type,
       'color' => $this->color,
       's_panel' => $this->s_panel,
       'price' => $this->price,
-      'image' => $this->image ? Storage::url($this->image) : ''
+      'image' => $this->image ? Storage::url($this->image) : '',
+      'phone' => $this->phone
     ];
   }
 }

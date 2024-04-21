@@ -25,7 +25,8 @@ class MoboResource extends JsonResource
       'memory_slot' => $this->memory_slot,
       'color' => $this->color,
       'price' => $this->price,
-      'image' => $this->image ? Storage::url($this->image) : ''
+      'image' => $this->image ? Storage::url($this->image) : '',
+      'phone' => $this->phone
     ];
   }
 }

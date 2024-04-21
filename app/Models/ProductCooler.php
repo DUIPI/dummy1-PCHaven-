@@ -8,20 +8,21 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class ProductCooler extends Model
 {
-    use HasFactory;
-    
-    protected $fillable=[
-      'name',
-      'fan_rpm',
-      'noice_lvl',
-      'color',
-      'size',
-      'price',
-      'image'
-    ];
+  use HasFactory;
 
-    public function user(): BelongsTo
-    {
-      return $this->belongsTo(User::class);
-    }
+  protected $fillable = [
+    'name',
+    'fan_rpm',
+    'noice_lvl',
+    'color',
+    'size',
+    'price',
+    'image',
+    'phone'
+  ];
+
+  public function user(): BelongsTo
+  {
+    return $this->belongsTo(User::class);
+  }
 }

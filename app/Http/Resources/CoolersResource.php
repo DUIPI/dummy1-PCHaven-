@@ -25,6 +25,7 @@ class CoolersResource extends JsonResource
       'size' => $this->size,
       'price' => $this->price,
       'image' => $this->image ? Storage::url($this->image) : '',
+      'phone' => $this->phone
     ];
   }
 }

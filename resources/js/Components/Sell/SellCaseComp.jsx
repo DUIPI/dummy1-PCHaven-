@@ -13,6 +13,7 @@ export default function SellCpuComp() {
     s_panel: "",
     price: "",
     image: null,
+    phone: "",
   });
 
   const submit = (e) => {
@@ -28,7 +29,6 @@ export default function SellCpuComp() {
     <div className="max-w-2xl p-8 m-5">
       <form onSubmit={submit}>
         <InputLabel htmlFor="case_image" value="Зураг оруулах" />
-
         <TextInput
           id="case_image"
           type="file"
@@ -90,12 +90,23 @@ export default function SellCpuComp() {
         <TextInput
           id="psu_price"
           name="price"
+          type="number"
           value={data.price}
           placeholder="Үнийг зөвхөн тоогоор оруулна уу."
           className="mt-1 block w-full"
           onChange={(e) => setData("price", e.target.value)}
         />
         <InputError message={errors.price} className=" mb-2" />
+
+        <InputLabel htmlFor="psu_phone" value="Утасны дугаар" />
+        <TextInput
+          id="psu_phone"
+          name="phone"
+          value={data.phone}
+          className="mt-1 block w-full"
+          onChange={(e) => setData("phone", e.target.value)}
+        />
+        <InputError message={errors.phone} className=" mb-2" />
 
         <PrimaryButton className="ms-4 my-4" disabled={processing}>
           Нийтлэх

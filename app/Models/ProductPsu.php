@@ -17,7 +17,8 @@ class ProductPsu extends Model
     'modular',
     'color',
     'price',
-    'image'
+    'image',
+    'phone'
   ];
 
   public function user(): BelongsTo

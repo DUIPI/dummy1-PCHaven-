@@ -22,6 +22,7 @@ return new class extends Migration
       $table->string('color');
       $table->integer('price');
       $table->string('image')->nullable();
+      $table->integer('phone');
       $table->timestamps();
     });
   }

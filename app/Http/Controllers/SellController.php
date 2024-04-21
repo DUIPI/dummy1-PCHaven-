@@ -46,7 +46,8 @@ class SellController extends Controller
       'graphics' => 'nullable',
       'price' => 'required|numeric',
       'tailbar' => 'nullable',
-      'image' => 'nullable|image'
+      'image' => 'nullable|image',
+      'phone' => 'required'
     ]);
 
     /** @var $image \Illuminate\Http\UploadedFile */
@@ -74,13 +75,14 @@ class SellController extends Controller
   public function sellRam(Request $req)
   {
     $sellRam = $req->validate([
-      'name'=>'required',
-      'gen'=>'required|exists:memories,id',
-      'speed'=>'required|numeric',
-      'modules'=>'required',
-      'color'=>'required',
-      'price'=>'required',
-      'image'=>'nullable|image',
+      'name' => 'required',
+      'gen' => 'required|exists:memories,id',
+      'speed' => 'required|numeric',
+      'modules' => 'required',
+      'color' => 'required',
+      'price' => 'required',
+      'image' => 'nullable|image',
+      'phone' => 'required'
     ]);
 
     /** @var $image \Illuminate\Http\UploadedFile */
@@ -116,7 +118,8 @@ class SellController extends Controller
       'memory_slot' => 'required',
       'color' => 'required',
       'price' => 'required',
-      'image' => 'nullable|image'
+      'image' => 'nullable|image',
+      'phone' => 'required'
     ]);
 
     /** @var $image \Illuminate\Http\UploadedFile */
@@ -147,7 +150,8 @@ class SellController extends Controller
       'color' => 'required',
       'size' => 'nullable|numeric',
       'price' => 'required',
-      'image' => 'nullable|image'
+      'image' => 'nullable|image',
+      'phone' => 'required'
     ]);
     /** @var $image \Illuminate\Http\UploadedFile */
 
@@ -179,7 +183,8 @@ class SellController extends Controller
       'cache' => 'required|numeric',
       'interface' => 'nullable',
       'price' => 'required',
-      'image' => 'nullable|image'
+      'image' => 'nullable|image',
+      'phone' => 'required'
     ]);
     /** @var $image \Illuminate\Http\UploadedFile */
 
@@ -212,7 +217,8 @@ class SellController extends Controller
       'color' => 'nullable',
       'length' => 'nullable',
       'price' => 'required',
-      'image' => 'nullable|image'
+      'image' => 'nullable|image',
+      'phone' => 'required'
     ]);
     /** @var $image \Illuminate\Http\UploadedFile */
 
@@ -243,7 +249,8 @@ class SellController extends Controller
       'modular' => 'required',
       'color' => 'nullable',
       'price' => 'required',
-      'image' => 'nullable|image'
+      'image' => 'nullable|image',
+      'phone' => 'required'
     ]);
     /** @var $image \Illuminate\Http\UploadedFile */
 
@@ -273,7 +280,8 @@ class SellController extends Controller
       'color' => 'nullable',
       's_panel' => 'required',
       'price' => 'required',
-      'image' => 'nullable|image'
+      'image' => 'nullable|image',
+      'phone' => 'required'
     ]);
     /** @var $image \Illuminate\Http\UploadedFile */
 

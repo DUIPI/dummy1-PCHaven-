@@ -19,11 +19,12 @@ class ProductGpu extends Model
     'color',
     'length',
     'price',
-    'image'
+    'image',
+    'phone'
   ];
 
   public function user(): BelongsTo
-    {
-      return $this->belongsTo(User::class);
-    }
+  {
+    return $this->belongsTo(User::class);
+  }
 }

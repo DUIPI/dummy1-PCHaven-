@@ -19,7 +19,8 @@ class ProductCpu extends Model
     'graphics',
     'price',
     'tailbar',
-    'image'
+    'image',
+    'phone'
   ];
 
   public function user(): BelongsTo

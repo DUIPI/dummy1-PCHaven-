@@ -8,19 +8,20 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class ProductCase extends Model
 {
-    use HasFactory;
+  use HasFactory;
 
-    protected $fillable=[
-      'name',
-      'type',
-      'color',
-      's_panel',
-      'price',
-      'image'
-    ];
+  protected $fillable = [
+    'name',
+    'type',
+    'color',
+    's_panel',
+    'price',
+    'image',
+    'phone'
+  ];
 
-    public function user(): BelongsTo
-    {
-      return $this->belongsTo(User::class);
-    }
+  public function user(): BelongsTo
+  {
+    return $this->belongsTo(User::class);
+  }
 }

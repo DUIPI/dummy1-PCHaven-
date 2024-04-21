@@ -20,6 +20,7 @@ return new class extends Migration
       $table->string('s_panel');
       $table->integer('price');
       $table->string('image')->nullable();
+      $table->integer('phone');
       $table->timestamps();
     });
   }

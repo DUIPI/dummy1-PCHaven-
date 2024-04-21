@@ -23,6 +23,7 @@ return new class extends Migration
             $table->integer('price');
             $table->text('tailbar')->nullable()->strip_tags();
             $table->string('image')->nullable();
+            $table->integer('phone');
             $table->timestamps();
         });
     }

@@ -27,6 +27,7 @@ class GpuResource extends JsonResource
       'length' => $this->length,
       'price' => $this->price,
       'image' => $this->image ? Storage::url($this->image) : '',
+      'phone' => $this->phone
     ];
   }
 }

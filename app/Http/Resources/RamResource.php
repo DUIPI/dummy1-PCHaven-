@@ -17,13 +17,14 @@ class RamResource extends JsonResource
   {
     return [
       'id' => $this->id,
-      'name'=>$this->name,
-      'genInfo'=> new AdminRamResource($this->genInfo),
-      'speed'=>$this->speed,
-      'modules'=>$this->modules,
-      'color'=>$this->color,
-      'price'=>$this->price,
+      'name' => $this->name,
+      'genInfo' => new AdminRamResource($this->genInfo),
+      'speed' => $this->speed,
+      'modules' => $this->modules,
+      'color' => $this->color,
+      'price' => $this->price,
       'image' => $this->image ? Storage::url($this->image) : '',
+      'phone' => $this->phone
     ];
   }
 }

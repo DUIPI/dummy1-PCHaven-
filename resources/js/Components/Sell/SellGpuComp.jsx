@@ -16,6 +16,7 @@ export default function SellCpuComp() {
     length: "",
     price: "",
     image: null,
+    phone: "",
   });
 
   const submit = (e) => {
@@ -135,6 +136,16 @@ export default function SellCpuComp() {
           onChange={(e) => setData("price", e.target.value)}
         />
         <InputError message={errors.price} className=" mb-2" />
+
+        <InputLabel htmlFor="gpu_phone" value="Утасны дугаар" />
+        <TextInput
+          id="gpu_phone"
+          name="phone"
+          value={data.phone}
+          className="mt-1 block w-full"
+          onChange={(e) => setData("phone", e.target.value)}
+        />
+        <InputError message={errors.phone} className=" mb-2" />
 
         <PrimaryButton className="ms-4 my-4" disabled={processing}>
           Нийтлэх
