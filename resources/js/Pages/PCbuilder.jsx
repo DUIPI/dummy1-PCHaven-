@@ -2,32 +2,10 @@ import DangerButton from "@/Components/DangerButton";
 import PrimaryButton from "@/Components/PrimaryButton";
 import Footer from "@/Layouts/Footer";
 import TopNavMain from "@/Layouts/TopNavLayout";
-import { Head, Link } from "@inertiajs/react";
-import React, { useState } from "react";
+import { Head, Link, router } from "@inertiajs/react";
+import React from "react";
 
 export default function PCbuilder({ auth, cartItems, cartItems1, cartItems2 }) {
-  const [cpuCartItems, setCpuCartItems] = useState(cartItems);
-  const [moboCartItems, setMoboCartItems] = useState(cartItems1);
-  const [ramCartItems, setRamCartItems] = useState(cartItems2);
-
-  const removeCpuItem = (index) => {
-    const newCpuCartItems = [...cpuCartItems];
-    newCpuCartItems.splice(index, 1);
-    setCpuCartItems(newCpuCartItems);
-  };
-
-  const removeMoboItem = (index) => {
-    const newMoboCartItems = [...moboCartItems];
-    newMoboCartItems.splice(index, 1);
-    setMoboCartItems(newMoboCartItems);
-  };
-
-  const removeRamItem = (index) => {
-    const newRamCartItems = [...ramCartItems];
-    newRamCartItems.splice(index, 1);
-    setRamCartItems(newRamCartItems);
-  };
-
   const isEmpty = cartItems.length === 0;
   const isMoboEmpty = cartItems1.length === 0;
   const isRamEmpty = cartItems2.length === 0;
@@ -53,6 +31,10 @@ export default function PCbuilder({ auth, cartItems, cartItems1, cartItems2 }) {
     ramSocket.length > 0 &&
     !ramSocket.some((ramsocket) => ramsocket === moboSocket);
 
+  const removeCpu = (cpu) => {
+    router.post(route("remove.cpu"),{cpu})
+  }
+
   return (
     <>
       <TopNavMain
@@ -68,15 +50,46 @@ export default function PCbuilder({ auth, cartItems, cartItems1, cartItems2 }) {
       <div className=" mb-11">
         <span>
           {cpuAndMobo && (
-            <p className="m-10 p-5 font-semibold text-red-600 bg-red-200 rounded-xl">
-              Сонгосон эх хавтан ба CPU -үүд хоорондоо тохирохгүй байна.
-            </p>
+            <p className="m-10 p-5 font-regular text-red-600 bg-red-200 rounded-xl">
+            Сонгосон{" "}
+            {cartItems.map((cpu) => (
+              <b key={cpu.id} className=" font-semibold">
+                {cpu.cpuname.cpu_name}
+              </b>
+            ))}{" "}
+            ба{" "}
+            {cartItems1.map((mobo) => (
+              <b key={mobo.id} className="font-semibold">
+                {mobo.name}
+              </b>
+            ))}{" "}
+            хоорондоо тохирохгүй байна.
+          </p>
           )}
         </span>
         <span>
           {moboAndRam && (
             <p className="m-10 p-5 font-semibold text-red-600 bg-red-200 rounded-xl">
-              Сонгосон Санах ой ба Эх хавтан хоорондоо тохирохгүй байна.
+              Сонгосон{" "}
+              {cartItems2.map((ram) => (
+                <b key={ram.id} className=" text-gray-800">
+                  {ram.name}
+                </b>
+              ))}{" "}
+              ба{" "}
+              {cartItems1.map((mobo) => (
+                <b key={mobo.id} className=" text-gray-800">
+                  {mobo.name}
+                </b>
+              ))}{" "}
+              хоорондоо тохирохгүй байна.
+            </p>
+          )}
+        </span>
+        <span>
+          {!cpuAndMobo && !moboAndRam && (
+            <p className="m-10 p-5 font-semibold text-green-600 bg-green-200 rounded-xl">
+              Ямар нэгэн асуудал байхгүй! 😎
             </p>
           )}
         </span>
@@ -94,7 +107,7 @@ export default function PCbuilder({ auth, cartItems, cartItems1, cartItems2 }) {
               Та ямар нэгэн процессор сонгоогүй байна.
             </p>
           ) : (
-            cpuCartItems.map((cpu, index) => (
+            cartItems.map((cpu) => (
               <div
                 key={cpu.id}
                 className="flex items-center justify-between w-5/6 px-10 m-auto border-solid border-2 border-slate-300 rounded-xl"
@@ -106,7 +119,7 @@ export default function PCbuilder({ auth, cartItems, cartItems1, cartItems2 }) {
                 <p> {cpu.quantity} ш</p>
                 <p> {cpu.price}₮</p>
                 <p>{cpu.phone}</p>
-                <DangerButton onClick={() => removeCpuItem(index)}>
+                <DangerButton onClick={() => removeCpu(cpu)}>
                   X
                 </DangerButton>
               </div>
@@ -126,7 +139,7 @@ export default function PCbuilder({ auth, cartItems, cartItems1, cartItems2 }) {
               Та ямар нэгэн эх хавтан сонгоогүй байна.
             </p>
           ) : (
-            moboCartItems.map((mobo, index) => (
+            cartItems1.map((mobo, index) => (
               <div
                 key={mobo.id}
                 className="flex items-center justify-between w-5/6 px-10 m-auto border-solid border-2 border-slate-300 rounded-xl"
@@ -158,7 +171,7 @@ export default function PCbuilder({ auth, cartItems, cartItems1, cartItems2 }) {
               Та ямар нэгэн санах ой сонгоогүй байна.
             </p>
           ) : (
-            ramCartItems.map((ram, index) => (
+            cartItems2.map((ram, index) => (
               <div
                 key={ram.id}
                 className="flex items-center justify-between w-5/6 px-10 m-auto border-solid border-2 border-slate-300 rounded-xl"

@@ -94,7 +94,7 @@ Route::controller(ListController::class)->group(function(){
   Route::post('add/disk', 'addDisk')->name('add.disk');
   Route::post('add/case', 'addCase')->name('add.case');
 
-
+  Route::post('remove/cpu', 'removeCpu')->name('remove.cpu');
   Route::resource('pc-builder', ListController::class);
 });
 

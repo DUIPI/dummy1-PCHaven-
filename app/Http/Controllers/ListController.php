@@ -319,4 +319,31 @@ class ListController extends Controller
 
     return to_route('pc-builder.index');
   }
+
+  // Removing items from the List
+  public function removeCpu(Request $request){
+    $cpuIdToRemove = $request->input('cpu');
+
+    $cartItems = session()->get('cart', []);
+
+    // Find the index of the CPU in the cart items array
+    $cpuIndex = -1;
+    foreach ($cartItems as $index => $item) {
+        if ($item['id'] === $cpuIdToRemove) {
+            $cpuIndex = $index;
+            break;
+        }
+    }
+
+    if ($cpuIndex !== -1) {
+        // Remove the CPU from the cart items array
+        unset($cartItems[$cpuIndex]);
+        // Re-index the array after removal
+        $cartItems = array_values($cartItems);
+        // Update the session with the modified cart data
+        session()->put('cart', $cartItems);
+    }
+
+    return to_route('pc-builder.index');
+  }
 }
