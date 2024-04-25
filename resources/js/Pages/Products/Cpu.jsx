@@ -3,12 +3,28 @@ import TopNavMain from "@/Layouts/TopNavLayout";
 import { Head, router } from "@inertiajs/react";
 import Pagination from "@/Components/Pagination";
 import PrimaryButton from "@/Components/PrimaryButton";
+import TextInput from "@/Components/TextInput";
 
-export default function Cpu({ auth, pcpus }) {
+export default function Cpu({ auth, pcpus, queryParams = null }) {
   const addToList = (cpu) => {
     router.post(route("add.cpu"), {
       cpu,
     });
+  };
+  queryParams = queryParams || {};
+  const searchFieldChanged = (name, value) => {
+    if (value) {
+      queryParams[name] = value;
+    } else {
+      delete queryParams[name];
+    }
+
+    router.get(route("products.cpu"), queryParams);
+  };
+
+  const onKeyPress = (name, e) => {
+    if (e.key !== "Enter") return;
+    searchFieldChanged(name, e.target.value);
   };
   return (
     <>
@@ -24,6 +40,14 @@ export default function Cpu({ auth, pcpus }) {
 
       {/* <pre>{JSON.stringify(pcpus, undefined, 5)}</pre> */}
 
+      <div className="flex justify-end mr-8">
+        <TextInput
+          placeholder="Хайх.."
+          defaultValue={queryParams.name}
+          onBlur={(e) => searchFieldChanged("cpuname", e.target.value)}
+          onKeyPress={(e) => onKeyPress("cpuname", e)}
+        />
+      </div>
       <div className="py-12 flex flex-wrap">
         {pcpus.data.map((pcpu) => (
           <a

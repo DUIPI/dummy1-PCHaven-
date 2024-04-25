@@ -3,12 +3,28 @@ import TopNavMain from "@/Layouts/TopNavLayout";
 import { Head, router } from "@inertiajs/react";
 import Pagination from "@/Components/Pagination";
 import PrimaryButton from "@/Components/PrimaryButton";
+import TextInput from "@/Components/TextInput";
 
-export default function Case({ auth, cases }) {
+export default function Case({ auth, cases, queryParams = null }) {
   const addToList = (casee) => {
     router.post(route("add.casee"), {
       casee,
     });
+  };
+  queryParams = queryParams || {};
+  const searchFieldChanged = (name, value) => {
+    if (value) {
+      queryParams[name] = value;
+    } else {
+      delete queryParams[name];
+    }
+
+    router.get(route("products.case"), queryParams);
+  };
+
+  const onKeyPress = (name, e) => {
+    if (e.key !== "Enter") return;
+    searchFieldChanged(name, e.target.value);
   };
   return (
     <>
@@ -21,6 +37,14 @@ export default function Case({ auth, cases }) {
         user={auth.user}
       >
         <Head title="Кейс" />
+        <div className="flex justify-end">
+          <TextInput
+            placeholder="Хайх.."
+            defaultValue={queryParams.name}
+            onBlur={(e) => searchFieldChanged("name", e.target.value)}
+            onKeyPress={(e) => onKeyPress("name", e)}
+          />
+        </div>
         <div className="py-12 flex flex-wrap">
           {cases.data.map((kase) => (
             <a
@@ -49,7 +73,9 @@ export default function Case({ auth, cases }) {
                   Үнэ: <b>{kase.price}₮</b>
                 </div>
                 <button className="mt-12 flex">
-                  <PrimaryButton onClick={() => addToList(kase)}>Сонгох</PrimaryButton>
+                  <PrimaryButton onClick={() => addToList(kase)}>
+                    Сонгох
+                  </PrimaryButton>
                 </button>
               </span>
             </a>

@@ -3,12 +3,28 @@ import TopNavMain from "@/Layouts/TopNavLayout";
 import { Head, router } from "@inertiajs/react";
 import Pagination from "@/Components/Pagination";
 import PrimaryButton from "@/Components/PrimaryButton";
+import TextInput from "@/Components/TextInput";
 
-export default function CpuCooler({ auth, coolers }) {
+export default function CpuCooler({ auth, coolers, queryParams = null }) {
   const addToList = (cooler) => {
     router.post(route("add.cooler"), {
       cooler,
     });
+  };
+  queryParams = queryParams || {};
+  const searchFieldChanged = (name, value) => {
+    if (value) {
+      queryParams[name] = value;
+    } else {
+      delete queryParams[name];
+    }
+
+    router.get(route("products.cooler"), queryParams);
+  };
+
+  const onKeyPress = (name, e) => {
+    if (e.key !== "Enter") return;
+    searchFieldChanged(name, e.target.value);
   };
   return (
     <>
@@ -22,6 +38,14 @@ export default function CpuCooler({ auth, coolers }) {
       />
       <Head title="Хөргүүр" />
 
+      <div className="flex justify-end mr-8">
+        <TextInput
+          placeholder="Хайх.."
+          defaultValue={queryParams.name}
+          onBlur={(e) => searchFieldChanged("name", e.target.value)}
+          onKeyPress={(e) => onKeyPress("name", e)}
+        />
+      </div>
       <div className="py-12 flex flex-wrap">
         {coolers.data.map((cooler) => (
           <a
@@ -53,9 +77,10 @@ export default function CpuCooler({ auth, coolers }) {
                 Үнэ: <b>{cooler.price}₮</b>
               </div>
               <button className="mt-12 flex">
-              <PrimaryButton onClick={() => addToList(cooler)}>Сонгох</PrimaryButton>
+                <PrimaryButton onClick={() => addToList(cooler)}>
+                  Сонгох
+                </PrimaryButton>
               </button>
-                
             </span>
           </a>
         ))}

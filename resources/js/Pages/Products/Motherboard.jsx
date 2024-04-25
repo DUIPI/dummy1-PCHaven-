@@ -3,12 +3,29 @@ import TopNavMain from "@/Layouts/TopNavLayout";
 import { Head, router } from "@inertiajs/react";
 import PrimaryButton from "@/Components/PrimaryButton";
 import Pagination from "@/Components/Pagination";
+import TextInput from "@/Components/TextInput";
 
-export default function Motherboard({ auth, pmobos }) {
+export default function Motherboard({ auth, pmobos, queryParams = null }) {
   const addToList = (mobo) => {
     router.post(route("add.mobo"), {
       mobo,
     });
+  };
+
+  queryParams = queryParams || {};
+  const searchFieldChanged = (name, value) => {
+    if (value) {
+      queryParams[name] = value;
+    } else {
+      delete queryParams[name];
+    }
+
+    router.get(route("products.mobo"), queryParams);
+  };
+
+  const onKeyPress = (name, e) => {
+    if (e.key !== "Enter") return;
+    searchFieldChanged(name, e.target.value);
   };
   return (
     <>
@@ -21,9 +38,16 @@ export default function Motherboard({ auth, pmobos }) {
         user={auth.user}
       >
         <Head title="Эх хавтан" />
-      {/* <pre>{JSON.stringify(pmobos, undefined, 5)}</pre> */}
+        {/* <pre>{JSON.stringify(pmobos, undefined, 5)}</pre> */}
 
-
+        <div className="flex justify-end">
+          <TextInput
+            placeholder="Хайх.."
+            defaultValue={queryParams.name}
+            onBlur={(e) => searchFieldChanged("name", e.target.value)}
+            onKeyPress={(e) => onKeyPress("name", e)}
+          />
+        </div>
         <div className="py-12 flex flex-wrap">
           {pmobos.data.map((pmobo) => (
             <a
@@ -58,7 +82,9 @@ export default function Motherboard({ auth, pmobos }) {
                   Үнэ: <b>{pmobo.price}₮</b>
                 </div>
                 <button className="mt-12 flex">
-                  <PrimaryButton onClick={() => addToList(pmobo)}>Сонгох</PrimaryButton>
+                  <PrimaryButton onClick={() => addToList(pmobo)}>
+                    Сонгох
+                  </PrimaryButton>
                 </button>
               </span>
             </a>

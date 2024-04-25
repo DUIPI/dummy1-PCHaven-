@@ -286,7 +286,7 @@ class ListController extends Controller
 
   public function addCase(Request $request)
   {
-    $case = $request->input('case');
+    $case = $request->input('casee');
 
     $itemId = $case['id'];
 
@@ -321,7 +321,8 @@ class ListController extends Controller
   }
 
   // Removing items from the List
-  public function removeCpu(Request $request){
+  public function removeCpu(Request $request)
+  {
     $cpuIdToRemove = $request->input('cpu');
 
     $cartItems = session()->get('cart', []);
@@ -329,19 +330,19 @@ class ListController extends Controller
     // Find the index of the CPU in the cart items array
     $cpuIndex = -1;
     foreach ($cartItems as $index => $item) {
-        if ($item['id'] === $cpuIdToRemove) {
-            $cpuIndex = $index;
-            break;
-        }
+      if ($item['id'] === $cpuIdToRemove) {
+        $cpuIndex = $index;
+        break;
+      }
     }
 
     if ($cpuIndex !== -1) {
-        // Remove the CPU from the cart items array
-        unset($cartItems[$cpuIndex]);
-        // Re-index the array after removal
-        $cartItems = array_values($cartItems);
-        // Update the session with the modified cart data
-        session()->put('cart', $cartItems);
+      // Remove the CPU from the cart items array
+      unset($cartItems[$cpuIndex]);
+      // Re-index the array after removal
+      $cartItems = array_values($cartItems);
+      // Update the session with the modified cart data
+      session()->put('cart', $cartItems);
     }
 
     return to_route('pc-builder.index');

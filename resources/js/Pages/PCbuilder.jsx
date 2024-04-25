@@ -5,10 +5,25 @@ import TopNavMain from "@/Layouts/TopNavLayout";
 import { Head, Link, router } from "@inertiajs/react";
 import React from "react";
 
-export default function PCbuilder({ auth, cartItems, cartItems1, cartItems2 }) {
+export default function PCbuilder({
+  auth,
+  cartItems,
+  cartItems1,
+  cartItems2,
+  cartCooler,
+  cartDisk,
+  cartGpu,
+  cartPsu,
+  cartCase,
+}) {
   const isEmpty = cartItems.length === 0;
   const isMoboEmpty = cartItems1.length === 0;
   const isRamEmpty = cartItems2.length === 0;
+  const isCoolerEmpty = cartCooler.length === 0;
+  const isDiskEmpty = cartDisk.length === 0;
+  const isGpuEmpty = cartGpu.length === 0;
+  const isPsuEmpty = cartPsu.length === 0;
+  const isCaseEmpty = cartCase.length === 0;
 
   // Compare sockets
   const cpuSocket = !isEmpty ? cartItems[0].cpuname.cpu_socket : null;
@@ -32,8 +47,8 @@ export default function PCbuilder({ auth, cartItems, cartItems1, cartItems2 }) {
     !ramSocket.some((ramsocket) => ramsocket === moboSocket);
 
   const removeCpu = (cpu) => {
-    router.post(route("remove.cpu"),{cpu})
-  }
+    router.post(route("remove.cpu"), { cpu });
+  };
 
   return (
     <>
@@ -51,20 +66,20 @@ export default function PCbuilder({ auth, cartItems, cartItems1, cartItems2 }) {
         <span>
           {cpuAndMobo && (
             <p className="m-10 p-5 font-regular text-red-600 bg-red-200 rounded-xl">
-            Сонгосон{" "}
-            {cartItems.map((cpu) => (
-              <b key={cpu.id} className=" font-semibold">
-                {cpu.cpuname.cpu_name}
-              </b>
-            ))}{" "}
-            ба{" "}
-            {cartItems1.map((mobo) => (
-              <b key={mobo.id} className="font-semibold">
-                {mobo.name}
-              </b>
-            ))}{" "}
-            хоорондоо тохирохгүй байна.
-          </p>
+              Сонгосон{" "}
+              {cartItems.map((cpu) => (
+                <b key={cpu.id} className=" font-semibold">
+                  {cpu.cpuname.cpu_name}
+                </b>
+              ))}{" "}
+              ба{" "}
+              {cartItems1.map((mobo) => (
+                <b key={mobo.id} className="font-semibold">
+                  {mobo.name}
+                </b>
+              ))}{" "}
+              хоорондоо тохирохгүй байна.
+            </p>
           )}
         </span>
         <span>
@@ -100,7 +115,7 @@ export default function PCbuilder({ auth, cartItems, cartItems1, cartItems2 }) {
           <p>Утас</p>
           <p></p>
         </div>
-        <div>
+        <div className="mx-6">
           <p className="mx-5 my-3">Процессор</p>
           {isEmpty ? (
             <p className="my-5 mx-10">
@@ -119,9 +134,7 @@ export default function PCbuilder({ auth, cartItems, cartItems1, cartItems2 }) {
                 <p> {cpu.quantity} ш</p>
                 <p> {cpu.price}₮</p>
                 <p>{cpu.phone}</p>
-                <DangerButton onClick={() => removeCpu(cpu)}>
-                  X
-                </DangerButton>
+                <DangerButton onClick={() => removeCpu(cpu)}>X</DangerButton>
               </div>
             ))
           )}
@@ -129,7 +142,7 @@ export default function PCbuilder({ auth, cartItems, cartItems1, cartItems2 }) {
             {isEmpty && <PrimaryButton>Сонгох</PrimaryButton>}
           </Link>
         </div>
-        <div>
+        <div className="mx-6">
           <div className="mx-5 my-3 mt-10">
             <p>Эх хавтан</p>
           </div>
@@ -161,7 +174,7 @@ export default function PCbuilder({ auth, cartItems, cartItems1, cartItems2 }) {
             {isMoboEmpty && <PrimaryButton>Сонгох</PrimaryButton>}
           </Link>
         </div>
-        <div>
+        <div className="mx-6">
           <div className="mx-5 my-3 mt-10">
             <p>Санах ой</p>
           </div>
@@ -191,6 +204,145 @@ export default function PCbuilder({ auth, cartItems, cartItems1, cartItems2 }) {
           )}
           <Link className="mx-10" href={route("products.memory")}>
             {isRamEmpty && <PrimaryButton>Сонгох</PrimaryButton>}
+          </Link>
+        </div>
+        <div className="mx-6">
+          <div className="mx-5 my-3 mt-10">
+            <p>Хөргүүр</p>
+          </div>
+          {isCoolerEmpty ? (
+            <p className="my-5 mx-10">Та ямар нэгэн хөргүүр сонгоогүй байна.</p>
+          ) : (
+            cartCooler.map((cooler, index) => (
+              <div
+                key={cooler.id}
+                className="flex items-center justify-between w-5/6 px-10 m-auto border-solid border-2 border-slate-300 rounded-xl"
+              >
+                <span className="flex items-center">
+                  <img className="h-16 w-16 mx-5 my-2" src={cooler.image} />
+                  <b>{cooler.name}</b>
+                </span>
+                <p> {cooler.quantity} ш</p>
+                <p> {cooler.price}₮</p>
+                <p>{cooler.phone}</p>
+                <DangerButton>X</DangerButton>
+              </div>
+            ))
+          )}
+          <Link className="mx-10" href={route("products.cooler")}>
+            {isCoolerEmpty && <PrimaryButton>Сонгох</PrimaryButton>}
+          </Link>
+        </div>
+        <div className="mx-6">
+          <div className="mx-5 my-3 mt-10">
+            <p>Диск</p>
+          </div>
+          {isDiskEmpty ? (
+            <p className="my-5 mx-10">Та ямар нэгэн диск сонгоогүй байна.</p>
+          ) : (
+            cartDisk.map((disk, index) => (
+              <div
+                key={disk.id}
+                className="flex items-center justify-between w-5/6 px-10 m-auto border-solid border-2 border-slate-300 rounded-xl"
+              >
+                <span className="flex items-center">
+                  <img className="h-16 w-16 mx-5 my-2" src={disk.image} />
+                  <b>{disk.name}</b>
+                </span>
+                <p> {disk.quantity} ш</p>
+                <p> {disk.price}₮</p>
+                <p>{disk.phone}</p>
+                <DangerButton>X</DangerButton>
+              </div>
+            ))
+          )}
+          <Link className="mx-10" href={route("products.storage")}>
+            {isDiskEmpty && <PrimaryButton>Сонгох</PrimaryButton>}
+          </Link>
+        </div>
+        <div className="mx-6">
+          <div className="mx-5 my-3 mt-10">
+            <p>График кард</p>
+          </div>
+          {isGpuEmpty ? (
+            <p className="my-5 mx-10">
+              Та ямар нэгэн график кард сонгоогүй байна.
+            </p>
+          ) : (
+            cartGpu.map((gpu, index) => (
+              <div
+                key={gpu.id}
+                className="flex items-center justify-between w-5/6 px-10 m-auto border-solid border-2 border-slate-300 rounded-xl"
+              >
+                <span className="flex items-center">
+                  <img className="h-16 w-16 mx-5 my-2" src={gpu.image} />
+                  <b>{gpu.name}</b>
+                </span>
+                <p> {gpu.quantity} ш</p>
+                <p> {gpu.price}₮</p>
+                <p>{gpu.phone}</p>
+                <DangerButton>X</DangerButton>
+              </div>
+            ))
+          )}
+          <Link className="mx-10" href={route("products.gpu")}>
+            {isGpuEmpty && <PrimaryButton>Сонгох</PrimaryButton>}
+          </Link>
+        </div>
+        <div className="mx-6">
+          <div className="mx-5 my-3 mt-10">
+            <p>Тэжээлийн блок</p>
+          </div>
+          {isPsuEmpty ? (
+            <p className="my-5 mx-10">
+              Та ямар нэгэн тэжээлийн блок сонгоогүй байна.
+            </p>
+          ) : (
+            cartGpu.map((gpu, index) => (
+              <div
+                key={gpu.id}
+                className="flex items-center justify-between w-5/6 px-10 m-auto border-solid border-2 border-slate-300 rounded-xl"
+              >
+                <span className="flex items-center">
+                  <img className="h-16 w-16 mx-5 my-2" src={gpu.image} />
+                  <b>{gpu.name}</b>
+                </span>
+                <p> {gpu.quantity} ш</p>
+                <p> {gpu.price}₮</p>
+                <p>{gpu.phone}</p>
+                <DangerButton>X</DangerButton>
+              </div>
+            ))
+          )}
+          <Link className="mx-10" href={route("products.psu")}>
+            {isPsuEmpty && <PrimaryButton>Сонгох</PrimaryButton>}
+          </Link>
+        </div>
+        <div className="mx-6">
+          <div className="mx-5 my-3 mt-10">
+            <p>Кейс</p>
+          </div>
+          {isCaseEmpty ? (
+            <p className="my-5 mx-10">Та ямар нэгэн кейс сонгоогүй байна.</p>
+          ) : (
+            cartCase.map((casee, index) => (
+              <div
+                key={casee.id}
+                className="flex items-center justify-between w-5/6 px-10 m-auto border-solid border-2 border-slate-300 rounded-xl"
+              >
+                <span className="flex items-center">
+                  <img className="h-16 w-16 mx-5 my-2" src={casee.image} />
+                  <b>{casee.name}</b>
+                </span>
+                <p> {casee.quantity} ш</p>
+                <p> {casee.price}₮</p>
+                <p>{casee.phone}</p>
+                <DangerButton>X</DangerButton>
+              </div>
+            ))
+          )}
+          <Link className="mx-10" href={route("products.case")}>
+            {isCaseEmpty && <PrimaryButton>Сонгох</PrimaryButton>}
           </Link>
         </div>
       </div>

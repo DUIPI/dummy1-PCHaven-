@@ -3,14 +3,31 @@ import TopNavMain from "@/Layouts/TopNavLayout";
 import { Head, router } from "@inertiajs/react";
 import PrimaryButton from "@/Components/PrimaryButton";
 import Pagination from "@/Components/Pagination";
+import TextInput from "@/Components/TextInput";
 
-export default function Memory({ auth, show_mems }) {
-
+export default function Memory({ auth, show_mems, queryParams = null }) {
   const addToList = (ram) => {
     router.post(route("add.ram"), {
       ram,
     });
   };
+
+  queryParams = queryParams || {};
+  const searchFieldChanged = (name, value) => {
+    if (value) {
+      queryParams[name] = value;
+    } else {
+      delete queryParams[name];
+    }
+
+    router.get(route("products.memory"), queryParams);
+  };
+
+  const onKeyPress = (name, e) => {
+    if (e.key !== "Enter") return;
+    searchFieldChanged(name, e.target.value);
+  };
+
   return (
     <>
       <TopNavMain
@@ -22,7 +39,14 @@ export default function Memory({ auth, show_mems }) {
         user={auth.user}
       >
         <Head title="Санах ой" />
-
+        <div className="flex justify-end">
+          <TextInput
+            placeholder="Хайх.."
+            defaultValue={queryParams.name}
+            onBlur={(e) => searchFieldChanged("name", e.target.value)}
+            onKeyPress={(e) => onKeyPress("name", e)}
+          />
+        </div>
         <div className="py-12 flex flex-wrap">
           {show_mems.data.map((memory) => (
             <a
@@ -54,7 +78,9 @@ export default function Memory({ auth, show_mems }) {
                   Үнэ: <b>{memory.price}₮</b>
                 </div>
                 <button className="mt-12 flex">
-                  <PrimaryButton onClick={() => addToList(memory)}>Сонгох</PrimaryButton>
+                  <PrimaryButton onClick={() => addToList(memory)}>
+                    Сонгох
+                  </PrimaryButton>
                 </button>
               </span>
             </a>

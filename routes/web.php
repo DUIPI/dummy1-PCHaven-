@@ -83,7 +83,7 @@ Route::controller(ProductsController::class)->group(function () {
 });
 
 //PC-builder routes
-Route::controller(ListController::class)->group(function(){
+Route::controller(ListController::class)->group(function () {
 
   Route::post('add/cpu', 'addCpu')->name('add.cpu');
   Route::post('add/mobo', 'addMobo')->name('add.mobo');
@@ -92,7 +92,7 @@ Route::controller(ListController::class)->group(function(){
   Route::post('add/psu', 'addPsu')->name('add.psu');
   Route::post('add/cooler', 'addCooler')->name('add.cooler');
   Route::post('add/disk', 'addDisk')->name('add.disk');
-  Route::post('add/case', 'addCase')->name('add.case');
+  Route::post('add/case', 'addCase')->name('add.casee');
 
   Route::post('remove/cpu', 'removeCpu')->name('remove.cpu');
   Route::resource('pc-builder', ListController::class);

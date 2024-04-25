@@ -1,4 +1,4 @@
-import { Head } from "@inertiajs/react";
+import { Head, Link } from "@inertiajs/react";
 import TopNavMain from "@/Layouts/TopNavLayout";
 import Poster from "/public/logo/Banner1.png";
 import SecondaryButton from "@/Components/SecondaryButton";
@@ -29,7 +29,7 @@ export default function Welcome({ auth }) {
                 ангиар нь угсраад аваарай.
               </p>
               <SecondaryButton className=" hover:bg-orange1 hover:text-white mt-3">
-                Угсрах
+                <Link href={route("pc-builder.index")}>Угсрах</Link>
               </SecondaryButton>
             </p>
           </div>
